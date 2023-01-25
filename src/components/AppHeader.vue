@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50">
+  <div class="bg-transparent">
     <div class="flex py-3 pl-2 w-11/12 justify-between">
         <router-link to="/" class="text-sm font-bold">QuizGame</router-link>
         <div class="w-10/12 flex justify-around">

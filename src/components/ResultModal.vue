@@ -9,21 +9,30 @@
                     Yayy
                 </div>
             </div>
-            <router-link :to="'result/'+ routeParam"
-                class="w-full my-2 hover:bg-blue-800 transition-all bg-blue-900 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Click Here to see the results</router-link>
+            <button @click="routeResult"
+                class="w-full my-2 hover:bg-blue-800 transition-all bg-blue-900 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Click Here to see the results</button>
             </div>
     </div>
   </div>
 </template>
 
 <script>
-import ResultPage from '../pages/ResultPage.vue';
 export default {
     props : {result : Number,resultData:Array},
     data(){
         return {
             clicked : true,
-            routeParam: `${this.result}/${JSON.stringify(this.resultData)}`
+        }
+    },
+    methods:{
+        routeResult(){
+            this.$router.push({
+                name: 'result',
+                params: {
+                    score : this.result,
+                    resultArr: JSON.stringify(this.resultData)
+                }
+            });
         }
     }
 

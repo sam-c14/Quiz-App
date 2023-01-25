@@ -7,9 +7,23 @@ import { Result } from "postcss";
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/quiz", component: Quiz },
+  {
+    path: "/quiz/",
+    component: Quiz,
+  },
   { path: "/login", component: LoginPage },
-  { path: "/result/:score/:id", component: ResultPage },
+  {
+    path: "/result/:score/:resultArr?",
+    name: "result",
+    component: ResultPage,
+    props(route) {
+      const resultArr = route.params.resultArr || "";
+
+      return {
+        resultArr: resultArr === "" ? [] : resultArr.split(","),
+      };
+    },
+  },
 ];
 
 const router = createRouter({
