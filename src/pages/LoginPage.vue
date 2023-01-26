@@ -1,6 +1,6 @@
 <template>
 <div class="flex flex-wrap wrapping-container justify-center items-center">
-    <div class="m-2 bg-white border-2 xl:py-5 lg:py-3 md:py-4 py-5 xl:w-1/3 lg:w-1/2  md:w-3/5 w-11/12 rounded-lg px-3 sm:px-5">
+    <div class="m-2 bg-white border-2 xl:py-5 lg:py-3 md:py-4 py-5 xl:w-1/3 lg:w-1/2  md:w-3/5 w-11/12 rounded-md px-3 sm:px-5">
         <h1 class="w-full text-center font-bold capitalize sm:text-3xl text-xl mb-3" v-if="!userSignUp">login</h1>
         <h1 class="w-full text-center font-bold capitalize sm:text-3xl text-xl mb-3" v-else>Sign Up</h1>
         <p class="w-full text-center text-xs sm:text-sm opacity-50 mb-4">Enter your credentials here</p>

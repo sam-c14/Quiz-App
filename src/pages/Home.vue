@@ -1,18 +1,18 @@
-<template>
-  <div>
-    <div class="w-full flex justify-center ">
-      <div v-for="(classes,index) in imgClasses" :key="classes" style="height: 90%;width: 99.7%;"  class="absolute">
-        <Transition name="slide-fade">
-          <div v-if="index == count" :class="classes" class="absolute w-full h-full">
-          
+<template> 
+    <div style="height: 90vh;" class="relative flex justify-center scroll-smooth no-scroll">
+      <div class="w-full flex flex-wrap absolute h-full" v-for="(classes,index) in imgClasses" :key="classes" >
+        <Transition name="fade">
+          <div class="w-full h-full" :class="classes" v-if="index == count">
+              <div class="flex h-full justify-end flex-wrap w-2/3 items-center">
+                <div>
+                  <h1 class="text-white text-2xl font-semibold my-1">Check Out Different Quizzes and pick one that suits you</h1>
+                  <button class="p-2 rounded-full text-blue-500 bg-white my-1">View Available Quiz   <span class="ml-1">&#9658;</span></button>
+                </div>
+              </div>
           </div>
         </Transition>
-      </div>
+        </div>
     </div>
-  </div>
-  <!-- <div class="h-screen">
-    heyy
-  </div> -->
 </template>
 
 <script>
@@ -21,7 +21,6 @@ export default {
     return{
       interval:"",
       count : 0,
-      imgUrl: ["pexels-jakub-novacek-924824.jpg", "pexels-ivan-samkov-4240497.jpg","pexels-lil-artsy-1394646.jpg"],
       imgClasses : ["image-1","image-2","image-3"]
     }
   },
@@ -29,13 +28,13 @@ export default {
      getImageUrl(imageUrl) {
       // This path must be correct for your file
       return new URL(`../assets/images/${imageUrl}`, import.meta.url)
-}
+    },
   },
   mounted(){
-    // this.interval=setInterval(()=>{
-    //   this.count == 2 ? this.count = 0 : this.count++
-    // },2000)
-    
+    this.interval=setInterval(()=>{  
+      if (this.count == 2) this.count = 0 
+      else this.count++
+    },7000)
   },
   unmounted(){
     this.interval = ''
@@ -45,34 +44,37 @@ export default {
 
 <style>
 .image-1{
-  background: url("../assets/images/pexels-ivan-samkov-4240497.jpg") no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),url("../assets/images/pexels-ivan-samkov-4240497.jpg") no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
+
 }
 .image-2{
-  background: url("../assets/images/pexels-jakub-novacek-924824.jpg") no-repeat;
+  background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("../assets/images/pexels-jakub-novacek-924824.jpg") no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
 .image-3{
-  background: url("../assets/images/pexels-lil-artsy-1394646.jpg") no-repeat;
+  background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("../assets/images/pexels-lil-artsy-1394646.jpg") no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed;
 }
-.slide-fade-enter-active {
-  transition: opacity,transform 0.5s ease;
-}
-
-.slide-fade-leave-active {
-  transition: opacity,transform 0.5s ease;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.7s ease;
 }
 
-.slide-fade-enter-from{
-  transform: translateX(-100%);
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
-.slide-fade-leave-to {display: none;
-  transform: translateX(100%);
-  opacity: 0;
+.no-scroll{
+  overflow: hidden;
+}
+body{
+  scroll-behavior: smooth;
 }
 </style>
