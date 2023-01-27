@@ -20,9 +20,7 @@
                 <button @click="renderPreviousPage" class="py-2 px-3 rounded sm:text-sm text-xs bg-slate-600 text-white">Prev</button>
             </div>
         </div>
-        <div class="flex w-12 justify-between items-center">
-            <div v-for="num in questions.length / 5" :key="num" class="sm:h-3 sm:w-1/4 h-2 w-1/6 rounded-full"><div class="w-full rounded-full h-full" :class="num == count/5?'bg-black':'bg-white'"></div></div>
-        </div>
+        <Pagination :arr="questions" :count="count" :counter="5" />
         <div>
             <div class="border border-blue-200 shadow-sm p-0.5 update-btn rounded-md border-opacity-0 hover:border-opacity-100">
                 <button @click="renderNextPage"
@@ -41,8 +39,9 @@
 
 <script>
 import ResultModal from "../components/ResultModal.vue"
+import Pagination from "../components/Pagination.vue"
 export default {
-    components :{ResultModal},
+    components :{ResultModal,Pagination},
     data(){
         return {
             count : 0,
