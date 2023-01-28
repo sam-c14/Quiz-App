@@ -144,7 +144,4 @@ body{
 .btn{
   transition: all .5s;
 }
-.aside-img{
-  background: url('../assets/images/pexels-ivan-samkov-4240497.jpg') no-repeat center/cover;
-}
 </style>
