@@ -13,8 +13,8 @@
         <div @wheel.prevent
             class="grid mt-5 grid-flow-col pl-5 lg:pl-36 scroll-smooth gap-x-3 relative quiz-card-container overflow-x-auto py-4"
             ref="quizCardContainer">
-            <div v-for="(item,index) in quizCount" :key="item"
-                class="lg:h-96 lg:w-72 md:h-60 md:w-44 h-64 w-48  overflow-hidden  shadow-md flex-wrap flex quiz-card bg-blue-300">
+            <div @click="renderQuiz(index)" v-for="(item,index) in quizImages.length" :key="item"
+                class="lg:h-96 lg:w-72 md:h-60 md:w-44 h-64 w-48  overflow-hidden  shadow-md flex-wrap flex quiz-card">
                 <div class="w-full h-3/4">
                     <img class="h-full w-full" :src="getImageUrl(quizImages[index])" alt="">
                 </div>
@@ -48,7 +48,7 @@ export default {
     data(){
         return {
             isScrolled : false,
-            quizCount: [1, 2, 3, 4, 5, 6, 7],
+            categories: ["arts", "sports", "music", "history", "movies", "general_knowledge", "science"],
         }
     },
     methods: {
@@ -61,6 +61,15 @@ export default {
             let quizCardContainer = this.$refs.quizCardContainer
             quizCardContainer.scrollLeft -= 500;
             quizCardContainer.scrollLeft <= 0 ? this.isScrolled = false : ''
+        },
+        renderQuiz(index){
+            console.log(index);
+            this.$router.push({
+                name: 'quiz',
+                params: {
+                    category: this.categories[index],
+                }
+            });
         }
     }  
 }

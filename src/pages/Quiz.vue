@@ -1,7 +1,7 @@
 <template>
     <div style="background-color: #007FAA;" class="relative">
   <header class="">
-    <h1 class="font-bold text-white text-center sm:text-xl text-base py-3">Quiz - Capitals Of The World</h1>
+    <h1 class="font-bold text-white text-center sm:text-xl text-base py-3 capitalize">Quiz - {{ category }}</h1>
   </header>
   
   <section class="grid place-items-center">
@@ -40,6 +40,7 @@
 <script>
 import ResultModal from "../components/ResultModal.vue"
 import Pagination from "../components/Pagination.vue"
+import getQuestions from "../utilities/getQuestions"
 export default {
     components :{ResultModal,Pagination},
     data(){
@@ -52,102 +53,14 @@ export default {
             resultAnalysis:{},
             resultData : [],
             endQuizSession : false,
-            questions: [
-                {
-                    id : "1",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : '2',
-                    question: "What is the capital of Lithuania?",
-                    options: ["Riga", "Valdus", "Vilinuis", "Kaunas"],
-                    answer: "Riga"
-                },
-                {
-                    id : "3",
-                    question: "What is the capital of Usa?",
-                    options: ["Chicago", "Hawaii", "New York", "Washington Dc"],
-                    answer: "New York"
-                },
-                {
-                    id : "4",
-                    question: "What is the capital of China?",
-                    options: ["Tokyo", "Don't Know", "Asia", "Beijing"],
-                    answer: "Beijing"
-                },
-                {
-                    id : "5",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "6",
-                    question: "What is the capital of Brazil?",
-                    options: ["Jos", "America", "South America", "Rio"],
-                    answer: "Rio"
-                },
-                {
-                    id : "7",
-                    question: "What is the capital of South Korea?",
-                    options: ["Portugal", "Honduras", "I don't know", "North Korea"],
-                    answer: "I don't know"
-                },
-                {
-                    id : "8",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "9",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "10",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "11",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "12",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "13",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "14",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-                {
-                    id : "15",
-                    question: "What is the capital of Jordan?",
-                    options: ["Amman", "Madaba", "Bishek", "Muscat"],
-                    answer: "Bishek"
-                },
-            ]
+            error :'',
+            questions: '',
+            category : this.$route.params.category
         }
     },
     mounted(){
-        this.tempQuestionArr = [...this.questions.slice(0,5)]
+        
+        this.tempQuestionArr = [...this.questions.slice(0, 5)]
         this.count = this.tempQuestionArr.length
     },
     updated(){
@@ -259,8 +172,32 @@ export default {
                     this.resultData.push({ question: question.question, selectedOption: "None", answer: question.answer })
                 }
             })
+        },
+        setData(error, questions) {
+            if (error) {
+                this.error = error
+            } else {
+                this.questions = questions
+            }
         }
-    }
+    },
+
+    beforeRouteEnter(to, from, next) {
+        getQuestions(to.params.category, (err, questions) => {
+            // `setData` is a method defined below
+            next(vm => vm.setData(err, questions))
+        })
+    },
+    // when route changes and this component is already rendered,
+    // the logic will be slightly different.
+    async beforeRouteUpdate(to, from) {
+        this.questions = null
+        try {
+            this.questions = await getQuestions(to.params.category)
+        } catch (error) {
+            this.error = error.toString()
+        }
+    },
 
 }
 </script>
