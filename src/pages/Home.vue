@@ -122,7 +122,7 @@ body{
   scroll-behavior: smooth;
 }
 .quiz-card{
-  transition: all .5s;
+  transition: all .4s;
 }
 .quiz-card:hover{
   transform: scale(1.05);

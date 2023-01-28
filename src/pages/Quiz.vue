@@ -93,6 +93,7 @@ export default {
         updateStorage(){
             if (this.isUpdateBtnClicked) {
                 var attemptedQuestions = JSON.parse(sessionStorage.getItem("attemptedQuestions"))
+                console.log(attemptedQuestions)
                 if(attemptedQuestions == null && this.endQuizSession)  attemptedQuestions = []
                 attemptedQuestions.map(id => {
                     let option = document.getElementById(`${id}`)
@@ -136,6 +137,7 @@ export default {
             }
             this.isUpdateBtnClicked = true
            sessionStorage.setItem("attemptedQuestions",JSON.stringify(this.selectedOptions))
+           console.log(this.selectedOptions)
         },
         filterOptions(id){
             this.selectedOptions = this.selectedOptions.filter(options=>{
@@ -146,6 +148,7 @@ export default {
         endQuiz(){
             let answers = []
             let questionId = []
+            console.log(this.selectedOptions);
             this.selectedOptions.map(option=>{
                 let answer = option.substring(option.length - 1, option.length)
                 answers.push(answer)

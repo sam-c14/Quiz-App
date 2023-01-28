@@ -27,7 +27,7 @@ export default {
     data(){
         return{
             imgLogo: ["Api_logo.jpg", "Firebase_logo.jpg", "Tailwind_logo_2.jpg", "Vue_Js_Logo.jpg"],
-            backgroundImgs : ["Api_Background.jpg","Firebase_Background.jpg","Tailwind_Background.jpg","Vue_Background.jpg"],
+            backgroundImgs : ["Api_Background.jpg","Firebase_Background_2.jpg","Tailwind_Background.jpg","Vue_Background.jpg"],
             currentTag:'',
             newTagArr : []
         }

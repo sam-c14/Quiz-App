@@ -40,6 +40,9 @@ export default {
     renderResultAnalysis(){
 
     }
+  },
+  mounted(){
+    console.log(this.resultArr)
   }
 
 }
