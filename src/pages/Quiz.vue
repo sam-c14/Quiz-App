@@ -124,7 +124,7 @@ export default {
         },
         renderPreviousPage(){
             if (this.count - 5 !== 0) {
-                let startIndex = parseInt(this.tempQuestionArr[0].id) - 6
+                let startIndex = Number(this.tempQuestionArr[0].id) - 6
                 this.tempQuestionArr = [...this.questions.slice(startIndex, this.count - 5)]
                 this.count -= 5
                 this.isUpdateBtnClicked = true
@@ -141,18 +141,20 @@ export default {
         },
         filterOptions(id){
             this.selectedOptions = this.selectedOptions.filter(options=>{
-                return !options.startsWith(id[0])
+                if (!options.startsWith(id[0])) return options
+                else if (options.startsWith(id[0])){
+                    if (options.length !== id.length || !options.startsWith(id.slice(0,2))) return options
+                }
             }) 
             this.selectedOptions.push(id)
         },
         endQuiz(){
             let answers = []
             let questionId = []
-            console.log(this.selectedOptions);
             this.selectedOptions.map(option=>{
                 let answer = option.substring(option.length - 1, option.length)
                 answers.push(answer)
-                option=option.replace(answer," ").trim()
+                option = option.slice(0, option.length - 1)
                 questionId.push(option)
             })
             this.endQuizSession = true
