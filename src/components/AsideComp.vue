@@ -11,8 +11,8 @@
                             <img :src="getImageUrl(logo)" class="w-full h-full rounded-full" alt="" srcset=""/>
                         </div>
                         <div class="mt-2 text absolute text-center text-xs text-white w-full">
-                            <p>Showmax is an internet-based subscription Video-on-demand service</p>
-                            <p class="mt-3 font-semibold">Showmax</p>
+                            <p>{{ asideContent[index].content }}</p>
+                            <p class="mt-3 font-semibold"><a target="_blank" :href="asideContent[index].link">{{ asideContent[index].linkTitle }}</a></p>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,29 @@ export default {
             imgLogo: ["Api_logo.jpg", "Firebase_logo.jpg", "Tailwind_logo_2.jpg", "Vue_Js_Logo.jpg"],
             backgroundImgs : ["Api_Background.jpg","Firebase_Background_2.jpg","Tailwind_Background.jpg","Vue_Background.jpg"],
             currentTag:'',
-            newTagArr : []
+            newTagArr : [],
+            asideContent :[ 
+                {
+                    content : 'The Trivia api was used to fetch the questions for each quiz.Click the link below to check it out.',
+                    link: "https://the-trivia-api.com/",
+                    linkTitle : "Trivia api"
+                },
+                {
+                    content: 'Firebase was used for auth operations.Click the link below to check the docs.',
+                    link: "https://firebase.google.com/",
+                    linkTitle: "Firebase"
+                },
+                {
+                    content: 'Tailwind css was used for custom styles.Check out tailwind docs below.',
+                    link: "https://tailwindcss.com/",
+                    linkTitle: "Tailwind"
+                },
+                {
+                    content: 'Vue Js was used as the frontend js framework.Know more about vue js by clicking link below.',
+                    link: "https://vuejs.org/",
+                    linkTitle: "Vue Js"
+                },
+        ]
         }
     },
     methods : {

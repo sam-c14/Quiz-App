@@ -3,13 +3,13 @@
   <div class="grid place-items-center">
     <div class="text-center">
       <h1 class="font-bold text-white">
-        <span v-if="score >= resultArr.length / 2">Yayy</span>
+        <span v-if="score >= Math.floor(resultArr.length / 2)">Yayy</span>
         <span v-else>Awwn</span> 
         you 
-        <span v-if="score >= resultArr.length / 2">passed</span> 
+        <span v-if="score >= Math.floor(resultArr.length / 2)">passed</span> 
         <span v-else>didn't do too well on </span>
         the quiz
-        <span v-if="score < resultArr.length / 2">better luck next time</span>
+        <span v-if="score < Math.floor(resultArr.length / 2)">better luck next time</span>
        </h1>
       <h2 class="font-bold text-white">Your score was {{ score }}</h2>
     </div>
@@ -17,7 +17,7 @@
       <div v-for="object in resultArr" :key="object" class="flex w-1/4 justify-center flex-col  font-semibold text-white">
         <div>{{ object.question }}</div>
         <div :class="object.selectedOption == object.answer ? 'text-green-600' :'text-red-500'">Your Answer : {{
-          object.selectedOption }}</div>
+        object.selectedOption }}</div>
         <div class="text-green-600">Correct Answer : {{ object.answer }}</div>
       </div>
     </div>
@@ -42,7 +42,6 @@ export default {
     }
   },
   mounted(){
-    console.log(this.resultArr)
   }
 
 }

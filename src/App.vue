@@ -1,5 +1,5 @@
 <template>
-    <AppHeaderVue class="" :isLoggedIn = "isLoggedIn"/>
+    <AppHeaderVue ref="AppHeader" class="fixed" :isLoggedIn="isLoggedIn" />
     <router-view></router-view>
 </template>
 
