@@ -34,15 +34,36 @@
   </div>
 </div>
 
-<ResultModal v-if="endQuizSession" :result = "result" :resultData = "resultData"/>
+<ResultModal v-if="endQuizSession">
+    <template #header>
+        <h1 class="m-1">Yayy You Completed the quiz!!!</h1>
+        <p class="m-1">Lorem ipsum dolor sit amet.</p>
+    </template>
+    
+    <template #main>
+        <div class=" text-center my-4 flex justify-center">
+            <div class="border happy-text text-white text-sm bg-blue-500  rounded-full p-2 w-1/3 py-7">
+                Yayy
+            </div>
+        </div>
+    </template>
+    
+    <template #footer>
+        <button @click="changeRoute('result',{score : result,resultArr : JSON.stringify(resultData)})"
+            class="w-full my-2 hover:bg-blue-800 transition-all bg-blue-900 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Click
+            Here to see the results</button>
+    </template>
+</ResultModal>
 </template>
 
 <script>
-import ResultModal from "../components/ResultModal.vue"
+import ResultModal from "../components/Modal.vue"
 import Pagination from "../components/Pagination.vue"
-import getQuestions from "../utilities/getQuestions"
+import getQuestions from "../utilities/mixins/getQuestions"
+import changeRoute from "../utilities/mixins/changeRoute"
 export default {
     components :{ResultModal,Pagination},
+    mixins : [getQuestions,changeRoute],
     data(){
         return {
             count : 0,
@@ -186,7 +207,7 @@ export default {
     },
 
     beforeRouteEnter(to, from, next) {
-        getQuestions(to.params.category, (err, questions) => {
+        getQuestions(to.params.category,to.params.difficulty, (err, questions) => {
             // `setData` is a method defined below
             next(vm => vm.setData(err, questions))
         })
@@ -196,7 +217,7 @@ export default {
     async beforeRouteUpdate(to, from) {
         this.questions = null
         try {
-            this.questions = await getQuestions(to.params.category)
+            this.questions = await getQuestions(to.params.category,to.params.difficulty)
         } catch (error) {
             this.error = error.toString()
         }

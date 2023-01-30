@@ -1,12 +1,12 @@
 <template>
-    <aside class="aside-img my-2 h-screen flex flex-wrap" ref="asideImgBackGround">
+    <aside class="aside-img my-2 h-auto md:h-screen flex flex-wrap" ref="asideImgBackGround">
         <div class="w-full">
-            <h1 class="text-center text-xl md:text-2xl lg:text-3xl text-white mt-5 sm:mt-10 font-semibold">Third party apps and Integrations used</h1>
+            <h1 class="text-center text-xl md:text-2xl lg:text-3xl text-white mt-5 sm:mt-10 font-medium">Third party apps and Integrations used</h1>
         </div>
-        <div class="h-full pt-10 lg:w-4/5">
+        <div class="h-full pt-8 sm:pt-10 lg:w-4/5">
             <div class="flex h-1/2 justify-center w-full">
-                <div class="w-10/12 md:justify-center gap-5 justify-between lg:gap-8 lg:justify-end flex flex-wrap lg:flex-nowrap">
-                    <div @mouseover="showText" :ref="'circle'" v-for="(logo,index) in imgLogo" :key="logo" :id="index" class="h-1/3 relative md:h-1/2 rounded-full w-2/5 md:w-1/5 img-circle">
+                <div class="w-10/12 md:justify-center gap-y-32 gap-x-6 justify-between lg:gap-8 lg:justify-end flex flex-wrap lg:flex-nowrap">
+                    <div @mouseover="showText" :ref="'circle'" v-for="(logo,index) in imgLogo" :key="logo" :id="index" class="h-1/3 relative md:h-1/2 rounded-full w-1/3 md:w-1/6 img-circle">
                         <div>
                             <img :src="getImageUrl(logo)" class="w-full h-full rounded-full" alt="" srcset=""/>
                         </div>
@@ -21,7 +21,7 @@
     </aside>
 </template>
 <script>
-import getImageUrl from "../utilities/getImageUrl"
+import getImageUrl from "../utilities/mixins/getImageUrl"
 export default {
     mixins: [getImageUrl],
     data(){
@@ -90,9 +90,19 @@ export default {
 .aside-img{
    transition: all .4s;
 }
+@media (max-width : 840px) {
+    .text {
+            font-size: 12px !important;
+            line-height: 0.8rem !important;
+        }
+}
 @media (max-width : 640px) {
     .aside-img{
-        height: 150vh !important;
+        height: 140vh !important;
+    }
+    .text{
+        font-size: 12px !important;
+        line-height: 0.8rem !important;
     }
 }
 @media (min-width: 1024px) {

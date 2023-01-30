@@ -1,5 +1,5 @@
 <template>
-  <div ref="AppHeader" class="text-white py-2 z-50 w-full top-0 app-header">
+  <div ref="AppHeader" class="text-gray-200 py-2 z-50 w-full top-0 app-header">
     <div class="flex py-3 pl-2 w-11/12 justify-between">
         <router-link to="/" class="text-sm font-bold">QuizGame</router-link>
         <div class="w-10/12 flex justify-around">
@@ -32,36 +32,31 @@ mounted(){
     let appHeader = this.$refs.AppHeader
     if (details.width < 640) {
       if (details.top < -33) {
-        appHeader.style.background = ' white'
-        appHeader.style.color = ' rgb(37 99 235)'
         appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
       }
     }
     else if (details.width < 840) {
       if (details.top < -60) {
-        appHeader.style.background = ' white'
-        appHeader.style.color = ' rgb(37 99 235)'
-        appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
       }
     }
     else if (details.width < 1024) {
       if (details.top < -80) {
-        appHeader.style.background = ' white'
-        appHeader.style.color = ' rgb(37 99 235)'
-        appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
       }
     }
     else if (details.width < 1440 || details.width > 1440) {
       if (details.top < -80) {
-        appHeader.style.background = ' white'
-        appHeader.style.color = ' rgb(37 99 235)'
         appHeader.style.borderBottom = ' 2.5px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
       }
     }
     if (details.top >= 0) {
-      appHeader.style.background = 'transparent'
-      appHeader.style.color = ' white'
       appHeader.style.borderBottom = 'none'
+      appHeader.style.backdropFilter = 'unset'
     }
   });
 }

@@ -1,7 +1,7 @@
-export default (category, callback) => {
+export default (category, difficulty, callback) => {
   console.log(category);
   fetch(
-    `https://the-trivia-api.com/api/questions?limit=15&categories=${category}&difficulty=easy`,
+    `https://the-trivia-api.com/api/questions?limit=15&categories=${category}&difficulty=${difficulty}`,
     {
       headers: { "Content-Type": "application/json" },
     }

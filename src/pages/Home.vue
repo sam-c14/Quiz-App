@@ -31,11 +31,10 @@
         <a href="#card-content"><Btn></Btn></a>
       </span>
     </div>
-
     <QuizCardSlider :quizImages="quizImages" />
     <AboutQuiz :quizImages="quizImages" :asideImgCount="asideImgCount" />
     <AsideComp />
-  <!-- <FooterComp /> -->
+  <FooterComp />
 </div>
 </template>
 
@@ -44,7 +43,7 @@ import HeroContent from "../components/HeroContent.vue"
 import Pagination from "../components/Pagination.vue"
 import Btn from "../components/Btn.vue"
 import FooterComp from "../components/Footer.vue"
-import getImageUrl from "../utilities/getImageUrl"
+import getImageUrl from "../utilities/mixins/getImageUrl"
 import QuizCardSlider from "../components/QuizCardSlider.vue"
 import AboutQuiz from "../components/AboutQuiz.vue"
 import AsideComp from "../components/AsideComp.vue"

@@ -48,5 +48,7 @@ export default {
 </script>
 
 <style>
-
+.ls{
+  background: rgba(22, 3, 4, 0.623);
+}
 </style>
