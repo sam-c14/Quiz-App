@@ -1,15 +1,13 @@
+import axios from "axios";
+
 export default (category, difficulty, callback) => {
-  console.log(category);
-  fetch(
-    `https://the-trivia-api.com/api/questions?limit=15&categories=${category}&difficulty=${difficulty}`,
-    {
-      headers: { "Content-Type": "application/json" },
-    }
-  )
-    .then((data) => data.json())
+  axios
+    .get(
+      `https://the-trivia-api.com/api/questions?limit=15&categories=${category}&difficulty=${difficulty}`
+    )
     .then((questions) => {
-      console.log(questions);
-      let newQuestions = questions.map((poster, index) => {
+      console.log(questions.data);
+      let newQuestions = questions.data.map((poster, index) => {
         return {
           options: [...poster.incorrectAnswers, poster.correctAnswer],
           answer: poster.correctAnswer,
@@ -19,7 +17,5 @@ export default (category, difficulty, callback) => {
       });
       callback(null, newQuestions);
     })
-    .catch((error) => {
-      callback(error, null);
-    });
+    .catch((error) => callback(error, null));
 };

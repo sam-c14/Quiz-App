@@ -1,5 +1,5 @@
 <template>
-  <div ref="AppHeader" class="text-gray-200 py-2 z-50 w-full top-0 app-header">
+  <div ref="AppHeader" class="text-gray-200 py-1 z-50 w-full top-0 app-header">
     <div class="flex py-3 pl-2 w-11/12 justify-between">
         <router-link to="/" class="text-sm font-bold">QuizGame</router-link>
         <div class="w-10/12 flex justify-around">

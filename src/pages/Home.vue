@@ -70,7 +70,7 @@ export default {
         }, 
       ],
       imgClasses : ["image-1","image-2","image-3"],
-      quizImages : ["Art_Quiz.jpg","Golf_Quiz.jpg","History_Quiz_2.jpg","History_Quiz.jpg","Movie_Quiz.jpg","OIP.jpg","Science_Quiz.jpg"]
+      quizImages : ["Art_Quiz_5.jpg","Golf_Quiz.jpg","History_Quiz_2.jpg","History_Quiz.jpg","Movie_Quiz_4.jpg","OIP.jpg","Science_Quiz.jpg"]
     }
   },
   computed : {},

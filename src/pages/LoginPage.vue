@@ -27,7 +27,9 @@
 
 <script>
 import firebase from "../utilities/firebase"
+import changeRoute from "../utilities/mixins/changeRoute"
 export default {
+    mixins: [changeRoute],
     data(){
         return{
             email:"",
@@ -45,10 +47,11 @@ export default {
                .then((userCredential) => {
                    // Signed in 
                    const user = userCredential.user;
+                   console.log(user)
                    if(user){
                        this.email=this.password = ""
                    }
-                   console.log(user)
+                   this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
                    // ...
                })
                .catch((error) => {
@@ -65,12 +68,14 @@ export default {
                     if (user) {
                         this.email = this.password = ""
                     }
+                    this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
                     console.log(user)
                     // ...
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    console.log(errorCode)
                     // ..
                 });
         }
@@ -93,6 +98,6 @@ export default {
     }
 }
 @media (min-width:1024px) {
-    .wrapping-container {height:calc(100vh - 66px);}
+    .wrapping-container {height:100vh }
 }
 </style>

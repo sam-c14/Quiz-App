@@ -15,8 +15,8 @@
                 </div>
                 <div class="flex my-2 justify-center">
                     <ul class="flex justify-center px-2 gap-3 flex-wrap sm:gap-5">
-                        <li class="text-white text-xs hover:text-blue-500 quiz-card capitalize " v-for="num in 5"
-                            :key="num">lorem</li>
+                        <li class="text-white text-xs hover:text-blue-500 quiz-card capitalize " v-for="link in footerDetails"
+                            :key="link"><a target="_blank" :href="link.link">{{link.content}}</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,6 +33,7 @@ export default {
         return {
             footerImgLinks : ["Twitter_Logo.jpg","Githublogo.jpg","Link_Logo.jpg"],
             footerLinks: ["http://twitter.com/affah_samuel", "https://github.com/sam-c14/","https://www.linkedin.com"],
+            footerDetails: [{ content: "About Us", link: "https://github.com/sam-c14/" }, { content: "Know more Vue", link: "https://vuejs.org/" }, { content: "Pexels", link: "www.pexels.com" }, { content: "Tailwind icons", link: "https://tailwindcss.com/" }, { content: "Contact Us" , link : "gmail.com"}]
         }
     }
 }

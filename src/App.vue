@@ -1,5 +1,5 @@
 <template>
-    <AppHeaderVue ref="AppHeader" class="fixed" :isLoggedIn="isLoggedIn" />
+    <AppHeaderVue class="fixed" :isLoggedIn="isLoggedIn" />
     <router-view></router-view>
 </template>
 
@@ -21,6 +21,7 @@ export default {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         this.isLoggedIn = true
+        console.log(uid)
         // ...
       } else {
         // User is signed out

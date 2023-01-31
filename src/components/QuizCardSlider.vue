@@ -103,7 +103,7 @@ export default {
             this.category = this.categories[index]
         },
         startQuiz(){
-            this.changeRoute('quiz', { category: this.category, difficulty: this.difficulty })
+            this.changeRoute('login', { category: this.category, difficulty: this.difficulty })
         },
         preventHorizontalScroll(e){
             e.preventDefault();

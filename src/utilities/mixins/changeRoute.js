@@ -1,7 +1,6 @@
 export default {
   methods: {
     changeRoute(name, params) {
-      console.log(params);
       this.$router.push({ name, params });
     },
   },

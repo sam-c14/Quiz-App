@@ -8,11 +8,11 @@ import { Result } from "postcss";
 const routes = [
   { path: "/", component: Home },
   {
-    path: "/quiz/:category",
+    path: "/quiz/:category/:difficulty",
     name: "quiz",
     component: Quiz,
   },
-  { path: "/login", component: LoginPage },
+  { path: "/login/:category/:difficulty", name: "login", component: LoginPage },
   {
     path: "/result/:score/:resultArr?",
     name: "result",

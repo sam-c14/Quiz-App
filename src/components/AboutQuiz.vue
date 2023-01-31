@@ -1,7 +1,7 @@
 <template>
 <aside class="bg-gray-400 py-5">
     <div class="h-full flex flex-wrap sm:flex-nowrap">
-        <div class="w-full sm:mt-0 mt-1 bg-red-300 sm:w-1/2 h-full flex items-center pr-0 justify-center">
+        <div class="w-full sm:mt-0 mt-1 sm:w-1/2 h-full flex items-center pr-0 justify-center">
             <img class="w-3/5 lg:w-1/2 xl:w-1/3 md:w-4/6 h-full sm:h-full rounded-full"
                 :src="getImageUrl(quizImages[asideImgCount])" alt="">
         </div>

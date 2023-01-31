@@ -80,7 +80,7 @@ export default {
         }
     },
     mounted(){
-        
+        console.log(this.$route.params)
         this.tempQuestionArr = [...this.questions.slice(0, 5)]
         this.count = this.tempQuestionArr.length
     },
