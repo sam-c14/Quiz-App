@@ -33,7 +33,8 @@ export default {
         return {
             footerImgLinks : ["Twitter_Logo.jpg","Githublogo.jpg","Link_Logo.jpg"],
             footerLinks: ["http://twitter.com/affah_samuel", "https://github.com/sam-c14/","https://www.linkedin.com"],
-            footerDetails: [{ content: "About Us", link: "https://github.com/sam-c14/" }, { content: "Know more Vue", link: "https://vuejs.org/" }, { content: "Pexels", link: "www.pexels.com" }, { content: "Tailwind icons", link: "https://tailwindcss.com/" }, { content: "Contact Us" , link : "gmail.com"}]
+            footerDetails: [{ content: "About Us", link: "https://github.com/sam-c14/" }, { content: "Know more Vue", link: "https://vuejs.org/" }, {
+                content: "Pexels", link: "https://www.pexels.com" }, { content: "Tailwind icons", link: "https://tailwindcss.com/" }, { content: "Contact Us" , link : "'mailto:'samuelaffah14@gmail.com"}]
         }
     }
 }

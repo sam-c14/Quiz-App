@@ -42,7 +42,7 @@ export default {
     },
    methods:{
         login(){
-           const auth = firebase.getAuth();
+           const auth = firebase.getAuth()
            firebase.signInWithEmailAndPassword(auth, this.email, this.password)
                .then((userCredential) => {
                    // Signed in 
@@ -67,9 +67,9 @@ export default {
                     const user = userCredential.user;
                     if (user) {
                         this.email = this.password = ""
-                    }
+                    } console.log(user)
                     this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
-                    console.log(user)
+                    
                     // ...
                 })
                 .catch((error) => {
@@ -79,6 +79,10 @@ export default {
                     // ..
                 });
         }
+    },
+    beforeUnmount(){
+        console.log(this.email)
+        console.log(this.password)
     }
 }
 </script>
