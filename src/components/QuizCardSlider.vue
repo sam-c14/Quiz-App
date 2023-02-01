@@ -64,7 +64,7 @@
         </QuizModal>
         <div class="my-4 pr-2 w-10/12 flex justify-end">
             <div class="">
-                <Btn :direction="'right-long'" :icon="'btn'">View All Quizzes</Btn>
+                <Btn @click="showAllQuiz" :direction="'right-long'" :icon="'btn'">View All Quizzes</Btn>
             </div>
         </div>
     </section>
@@ -93,8 +93,6 @@ export default {
             currentDate : '',
             isScrolledRightEnd : false
         }
-    },
-    mounted(){
     },
     computed : {
         getCurrentDate() {
@@ -131,6 +129,9 @@ export default {
             let quizCardContainer = this.$refs.quizCardContainer
             quizCardContainer.scrollTop += e.deltaY;
         },
+        showAllQuiz(){
+            this.changeRoute('allQuiz', {  })
+        }
     }  
 }
 </script>

@@ -2,11 +2,11 @@ import Quiz from "./pages/Quiz.vue";
 import LoginPage from "./pages/LoginPage.vue";
 import Home from "./pages/Home.vue";
 import ResultPage from "./pages/ResultPage.vue";
+import AllQuizPage from "./pages/AllQuizPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import { Result } from "postcss";
 
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", components: { default: Home } },
   {
     path: "/quiz/:category/:difficulty",
     name: "quiz",
@@ -24,6 +24,11 @@ const routes = [
         resultArr: resultArr === "" ? [] : resultArr.split(","),
       };
     },
+  },
+  {
+    path: "/allQuiz",
+    name: "allQuiz",
+    component: AllQuizPage,
   },
 ];
 
