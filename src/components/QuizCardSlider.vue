@@ -6,7 +6,7 @@
                 @click="scrollLeft">
                 <Btn :icon="'left'"></Btn>
             </span>
-            <span class="bg-white p-3 rounded-full text-black" @click="scrollRight">
+            <span :class="!isScrolledRightEnd ? 'opacity-100' : 'opacity-0'" class="bg-white p-3 rounded-full text-black" @click="scrollRight">
                 <Btn :icon="'right'"></Btn>
             </span>
         </div>
@@ -19,14 +19,17 @@
                     <img class="h-full w-full" :src="getImageUrl(quizImages[index])" alt="">
                 </div>
                 <div class="bg-white px-5 flex flex-wrap w-full h-1/4">
-                    <div class="w-full flex justify-between">
-                        <p class="text-xs text-black sm:block hidden">This is date</p>
-                        <p class="text-xs text-blue-600">This is Country</p>
+                    <div class="w-full mt-1 flex justify-between">
+                        <p class="text-xs text-black sm:block hidden">{{ getCurrentDate }}</p>
+                        <p class="text-xs text-blue-800">{{ getCountry }}</p>
                     </div>
                     <div class="w-full text-black">
-                        <h1 class="font-normal sm:w-full w-1/3 text-xs lg:text-sm">This Quiz is based on the history of different Countries</h1>
+                        <h1 class="font-normal sm:w-full w-1/3 text-xs lg:text-sm">{{ quizInfo[index]}}</h1>
                     </div>
                 </div>
+            </div>
+            <div class="bg-transparent w-full h-full" ref="endScroll">
+
             </div>
         </div>
         <QuizModal v-if="quizSelected">
@@ -71,9 +74,10 @@ import Btn from "../components/Btn.vue"
 import getImageUrl from "../utilities/mixins/getImageUrl"
 import QuizModal from "../components/Modal.vue"
 import changeRoute from "../utilities/mixins/changeRoute"
+import getCountry from '../utilities/mixins/getCountry'
 export default {
     components: { Btn, QuizModal },
-    mixins: [getImageUrl, changeRoute],
+    mixins: [getImageUrl, changeRoute,getCountry],
     props : {
         quizImages : Array
     },
@@ -81,22 +85,39 @@ export default {
         return {
             isScrolled : false,
             categories: ["arts", "sports", "music", "history", "movies", "general_knowledge", "science"],
+            quizInfo : ["This quiz is based on arts","Test your knowledge on different sports","How much do you know music,  Click to Find out","Test your info on history","Like Movies? Check out some of your best movies","Want to know more on general topics? Click here","Science Geek? Find out more by clicking"],
             difficulty : '',
             quizSelected : false,
-            category : ''
+            category : '',
+            months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+            currentDate : '',
+            isScrolledRightEnd : false
         }
     },
-    mounted(){},
+    mounted(){
+    },
+    computed : {
+        getCurrentDate() {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1); //January is 0!
+            var yyyy = today.getFullYear();
+            return `${dd} ${this.months[mm]} ${yyyy}`
+        }
+    },
     methods: {
         scrollRight() {
             let quizCardContainer = this.$refs.quizCardContainer
+            let endScroll = this.$refs.endScroll
             quizCardContainer.scrollLeft += 500;
             !this.isScrolled ? this.isScrolled = true : ''
+            quizCardContainer.scrollLeft > endScroll.getBoundingClientRect().left ? this.isScrolledRightEnd = true : ''
         },
         scrollLeft() {
             let quizCardContainer = this.$refs.quizCardContainer
             quizCardContainer.scrollLeft -= 500;
-            quizCardContainer.scrollLeft <= 0 ? this.isScrolled = false : ''
+            quizCardContainer.scrollLeft <= 500 ? this.isScrolled = false : ''
+            this.isScrolledRightEnd = false
         },
         selectQuiz(index){
             this.quizSelected = true
@@ -109,7 +130,7 @@ export default {
             e.preventDefault();
             let quizCardContainer = this.$refs.quizCardContainer
             quizCardContainer.scrollTop += e.deltaY;
-        }
+        },
     }  
 }
 </script>
