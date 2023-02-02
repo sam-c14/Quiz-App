@@ -32,36 +32,40 @@
 
             </div>
         </div>
-        <QuizModal v-if="quizSelected">
-            <template #header>
-                <button @click="this.quizSelected = false"
-                    class="w-full my-2 hover:bg-blue-900 transition-all bg-blue-800 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Go Back</button>
-                <h1 class="my-2">You've selected the <span class="capitalize">{{ category }}</span> Quiz</h1>
-                <h1 class="my-2 font-semibold">Select Your Difficulty Level Below:</h1>
-            </template>
-        
-            <template #main>
-                <div>
-                    <div class="flex gap-2 items-center">
-                        <input v-model="difficulty" type="radio" class="h-3 w-3" name="difficulty-level" value="easy" id="" />
-                        <label class="font-bold">Easy</label>
+        <Teleport to="body">
+            <QuizModal v-if="quizSelected">
+                <template #header>
+                    <button @click="this.quizSelected = false"
+                        class="w-full my-2 hover:bg-blue-900 transition-all bg-blue-800 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Go
+                        Back</button>
+                    <h1 class="my-2">You've selected the <span class="capitalize">{{ category }}</span> Quiz</h1>
+                    <h1 class="my-2 font-semibold">Select Your Difficulty Level Below:</h1>
+                </template>
+            
+                <template #main>
+                    <div>
+                        <div class="flex gap-2 items-center">
+                            <input v-model="difficulty" type="radio" class="h-3 w-3" name="difficulty-level" value="easy" id="" />
+                            <label class="font-bold">Easy</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input v-model="difficulty" type="radio" class="h-3 w-3" name="difficulty-level" value="medium" id="" />
+                            <label class="font-bold">Medium</label>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <input v-model="difficulty" type="radio" class="h-3 w-3" name="difficulty-level" value="hard" id="" />
+                            <label class="font-bold">Hard</label>
+                        </div>
                     </div>
-                    <div class="flex gap-2 items-center">
-                        <input v-model="difficulty" type="radio" class="h-3 w-3" name="difficulty-level" value="medium" id="" />
-                        <label class="font-bold">Medium</label>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <input v-model="difficulty" type="radio" class="h-3 w-3" name="difficulty-level" value="hard" id="" />
-                        <label class="font-bold">Hard</label>
-                    </div>
-                </div>
-            </template>
-        
-            <template #footer>
-            <button @click="startQuiz"
-                class="w-full my-2 hover:bg-blue-800 transition-all bg-blue-900 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Go to Quiz</button>
-            </template>
-        </QuizModal>
+                </template>
+            
+                <template #footer>
+                    <button @click="startQuiz"
+                        class="w-full my-2 hover:bg-blue-800 transition-all bg-blue-900 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Go
+                        to Quiz</button>
+                </template>
+            </QuizModal>
+        </Teleport>
         <div class="my-4 pr-2 w-10/12 flex justify-end">
             <div class="">
                 <Btn @click="showAllQuiz" :direction="'right-long'" :icon="'btn'">View All Quizzes</Btn>
@@ -132,6 +136,6 @@ export default {
         showAllQuiz(){
             this.changeRoute('allQuiz', {  })
         }
-    }  
+    }, 
 }
 </script>

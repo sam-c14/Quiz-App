@@ -24,7 +24,7 @@
             </Transition>
         </div>
         <div class="pb-3 z-10 flex items-end justify-end w-10/12">
-            <Pagination class="" :arr="imgClasses" :count="count + 1" :counter="1" />
+            <Pagination @change-background = "changeImg" class="" :arr="imgClasses" :count="count + 1" :counter="1" />
         </div>
     </div>
 </template>
@@ -45,6 +45,11 @@ export default {
             imgClasses: ["image-1", "image-2", "image-3"],
         }
     },
+    methods : {
+        changeImg(n) {
+            this.$emit('change-img',n)
+        }
+    }
 }
 </script>
 <style>

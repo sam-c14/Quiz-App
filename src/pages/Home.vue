@@ -1,6 +1,6 @@
 <template> 
 <div id="home-container">
-    <Banner :heroInfo="heroInfo" :count="count" />
+    <Banner @change-img="changeBackground" :heroInfo="heroInfo" :count="count" />
     <div class="flex z-20 bg-black relative w-full">
       <span style="left: 50%;" class="text-3xl cursor-pointer bg-gray-200 border absolute -bottom-5 border-gray-300 shadow-lg p-3 rounded-full text-black">
         <a href="#card-content"><Btn></Btn></a>
@@ -9,20 +9,18 @@
     <QuizCardSlider :quizImages="quizImages" />
     <AboutQuiz :quizImages="quizImages" :asideImgCount="asideImgCount" />
     <AsideComp />
-  <FooterComp />
 </div>
 </template>
 
 <script>
 import Btn from "../components/Btn.vue"
-import FooterComp from "../components/Footer.vue"
 import getImageUrl from "../utilities/mixins/getImageUrl"
 import QuizCardSlider from "../components/QuizCardSlider.vue"
 import AboutQuiz from "../components/AboutQuiz.vue"
 import AsideComp from "../components/AsideComp.vue"
 import Banner from "../components/Banner.vue"
 export default {
-  components : {Banner,Btn,FooterComp,QuizCardSlider,AboutQuiz,AsideComp},
+  components : {Banner,Btn,QuizCardSlider,AboutQuiz,AsideComp},
   mixins: [getImageUrl],
   data(){
     return{
@@ -47,6 +45,11 @@ export default {
     }
   },
   computed : {},
+  methods : {
+    changeBackground(num) {
+      this.count = num
+    }
+  },
   mounted(){
     this.interval=setInterval(()=>{  
       if (this.count == 2) this.count = 0 
@@ -56,12 +59,15 @@ export default {
   },
   unmounted(){
     this.interval = ''
+  },
+  beforeRouteEnter (to, from, next) {
+    window.scrollTo(0, 0) 
+    next()
   }
 }
 </script>
 
 <style>
-
 body{
   scroll-behavior: smooth;
 }

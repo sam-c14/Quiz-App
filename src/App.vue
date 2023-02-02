@@ -1,13 +1,15 @@
 <template>
-    <AppHeaderVue class="fixed" :isLoggedIn="isLoggedIn" />
+  <AppHeaderVue class="fixed" :isLoggedIn="isLoggedIn" />
     <router-view></router-view>
+  <FooterComp />
 </template>
 
 <script>
 import AppHeaderVue from './components/AppHeader.vue';
 import firebase from "./utilities/firebase"
+import FooterComp from "./components/Footer.vue"
 export default {
-  components:{AppHeaderVue},
+  components:{AppHeaderVue,FooterComp},
   data(){
     return{
       isLoggedIn : false
