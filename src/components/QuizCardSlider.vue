@@ -83,7 +83,8 @@ export default {
     components: { Btn, QuizModal },
     mixins: [getImageUrl, changeRoute,getCountry],
     props : {
-        quizImages : Array
+        quizImages : Array,
+        isLoggedIn : Boolean
     },
     data(){
         return {
@@ -126,7 +127,12 @@ export default {
             this.category = this.categories[index]
         },
         startQuiz(){
-            this.changeRoute('login', { category: this.category, difficulty: this.difficulty })
+            if(!this.isLoggedIn){
+                this.changeRoute('login', { category: this.category, difficulty: this.difficulty })
+            }
+            else{
+                this.changeRoute('quiz', { category: this.category, difficulty: this.difficulty })
+            }
         },
         preventHorizontalScroll(e){
             e.preventDefault();

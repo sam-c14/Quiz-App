@@ -1,13 +1,13 @@
 <template>
   <AppHeaderVue class="fixed" :isLoggedIn="isLoggedIn" />
-    <router-view></router-view>
+    <router-view :isLoggedIn="isLoggedIn"></router-view>
   <FooterComp />
 </template>
 
 <script>
 import AppHeaderVue from './components/AppHeader.vue';
-import firebase from "./utilities/firebase"
 import FooterComp from "./components/Footer.vue"
+import { getAuth, onAuthStateChanged } from "./utilities/firebase"
 export default {
   components:{AppHeaderVue,FooterComp},
   data(){
@@ -16,8 +16,8 @@ export default {
     }
   },
   mounted() {
-    const auth = firebase.getAuth();
-    firebase.onAuthStateChanged(auth, (user) => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User

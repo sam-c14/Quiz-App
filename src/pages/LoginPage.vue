@@ -1,10 +1,10 @@
 <template>
-<div class="flex flex-wrap wrapping-container justify-center items-center">
+<div class="flex mb-2 flex-wrap wrapping-container justify-center items-center">
     <div class="m-2 bg-white border-2 xl:py-5 lg:py-3 md:py-4 py-5 xl:w-1/3 lg:w-1/2  md:w-3/5 w-11/12 rounded-md px-3 sm:px-5">
         <h1 class="w-full text-center font-bold capitalize sm:text-3xl text-xl mb-3" v-if="!userSignUp">login</h1>
         <h1 class="w-full text-center font-bold capitalize sm:text-3xl text-xl mb-3" v-else>Sign Up</h1>
         <p class="w-full text-center text-xs sm:text-sm opacity-50 mb-4">Enter your credentials here</p>
-        <form action="/" class="w-full">
+        <form @submit.prevent class="w-full">
             <span class="inline-flex w-full">
                 <label for="" class="z-50 absolute ml-2 text-xs text-gray-400">Email</label>
                 <input type="text" class="border-2 border-t-transparent relative text-sm w-full outline-none py-2 pl-2 my-2 rounded-sm" ref="username" v-model="email"/>
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import firebase from "../utilities/firebase"
 import changeRoute from "../utilities/mixins/changeRoute"
+import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword} from "../utilities/firebase"
 export default {
     mixins: [changeRoute],
     data(){
@@ -42,16 +42,15 @@ export default {
     },
    methods:{
         login(){
-           const auth = firebase.getAuth()
-           firebase.signInWithEmailAndPassword(auth, this.email, this.password)
+           const auth = getAuth()
+           signInWithEmailAndPassword(auth, this.email, this.password)
                .then((userCredential) => {
                    // Signed in 
                    const user = userCredential.user;
-                   console.log(user)
                    if(user){
                        this.email=this.password = ""
                    }
-                   this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
+                   this.changeRoute('quiz', { category: this.$route.params.category, difficulty: this.$route.params.difficulty })
                    // ...
                })
                .catch((error) => {
@@ -60,16 +59,17 @@ export default {
                });
         },
         signUp(){
-            const auth = firebase.getAuth();
-            firebase.createUserWithEmailAndPassword(auth, this.email, this.password)
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, this.email, this.password)
                 .then((userCredential) => {
                     // Signed in 
+                    
                     const user = userCredential.user;
                     if (user) {
                         this.email = this.password = ""
                     } console.log(user)
+                   
                     this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
-                    
                     // ...
                 })
                 .catch((error) => {
@@ -83,7 +83,9 @@ export default {
     beforeUnmount(){
         console.log(this.email)
         console.log(this.password)
-    }
+        
+        // this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
+    },
 }
 </script>
 

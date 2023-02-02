@@ -1,6 +1,18 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import * as firebase from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAQkkBgUUeZc0cYwF7S1gLty3Ug1Iz2wqs",
   authDomain: "quiz-app-eefd7.firebaseapp.com",
@@ -11,6 +23,17 @@ const firebaseConfig = {
   measurementId: "G-M6Z9FE5KCF",
 };
 
-initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+getAnalytics(app);
 
-export default firebase;
+console.log(auth);
+
+export {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+};

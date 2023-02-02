@@ -1,5 +1,5 @@
 <template>
-    <div v-show="!isLoading">
+    <div :class="!isLoading ? 'opacity-100' : 'opacity-5'" class="hide-show">
         <Banner @change-img="changeBackground" :heroInfo="heroInfo" :count="count" />
         
         <div class="w-full flex my-5">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div ref="loaderContainer" class="fixed hide w-full flex justify-center items-center h-screen bg-slate-100" v-if="isLoading">
+    <div ref="loaderContainer" style="z-index: 90;" class="fixed hide-show top-0 w-full flex justify-center items-center h-screen bg-slate-50" v-if="isLoading">
         <LoadingIcon />
     </div>
 </template>
@@ -73,29 +73,21 @@ export default {
             ],
             months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             quizInfo: ["This quiz is based on arts", "Test your knowledge on different sports", "How much do you know music,  Click to Find out", "Do you truly know the ancients? Click to find out", "Check your best movies and try interesting questions", "Want to know more on general topics? Click here", "How much do you know it Geek? Find out more by clicking","Think you know food cause you're eating it? Lets see how much you really know","Our true science geeks,Test your knowledge on geographic questions"],
-            firstMount: false,
+            hasBeenMounted: false,
             count : 0,
-            isLoading : true
+            isLoading : false
         }
     },
     beforeMount() {
-        this.firstMount = JSON.parse(localStorage.getItem("firstMount"))
-        if (!this.firstMount){
+        this.hasBeenMounted = JSON.parse(localStorage.getItem("hasBeenMounted"))
+        if (!this.hasBeenMounted){
             this.isLoading = true
             window.scrollTo(0, 0) 
-            this.firstMount = true
-            localStorage.setItem("firstMount", JSON.stringify(this.firstMount))
+            this.hasBeenMounted = true
+            this.loadAnimation()
+            localStorage.setItem("hasBeenMounted", JSON.stringify(this.hasBeenMounted))
         }
-        else{
-            if (this.isLoading) {
-                setTimeout(() => {
-                    this.$refs.loaderContainer.style.width = "0%"
-                    setTimeout(() => {
-                        this.isLoading = false
-                    }, 1000)
-                }, 2000)
-            }
-        }
+        else{}
     },
     mounted(){
         this.$refs.quizCard.map(card=>{
@@ -114,6 +106,17 @@ export default {
     methods : {
         changeBackground(num){
             this.count = num
+        },
+        loadAnimation(){
+            if (this.isLoading) {
+                setTimeout(() => {
+                    this.$refs.loaderContainer.style.borderRadius = "999px"
+                    this.$refs.loaderContainer.style.transform = "scale(0.2)"
+                    setTimeout(() => {
+                        this.isLoading = false
+                    }, 800)
+                }, 1000)
+            }
         }
     }
 
@@ -124,7 +127,7 @@ export default {
 .quiz-card-2{
     transition: all .5s;
 }
-.hide{
-    transition: all 2s;
+.hide-show{
+    transition: all 1s;
 }
 </style>
