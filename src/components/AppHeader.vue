@@ -26,42 +26,41 @@ export default {
       });
     }
   },
-// mounted(){
-//   window.addEventListener("scroll", (e) => {
-//     let details = document.body.getBoundingClientRect()
-//     let appHeader = this.$refs.AppHeader
-//     console.log(appHeader)
-//     if (details.width < 640) {
-//       if (details.top < -33) {
-//         appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
-//         appHeader.style.backdropFilter = ' blur(10px)'
-//       }
-//     }
-//     else if (details.width < 840) {
-//       if (details.top < -60) {
-//         console.log(appHeader)
-//         appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
-//         appHeader.style.backdropFilter = ' blur(10px)'
-//       }
-//     }
-//     else if (details.width < 1024) {
-//       if (details.top < -80) {
-//         appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
-//         appHeader.style.backdropFilter = ' blur(10px)'
-//       }
-//     }
-//     else if (details.width < 1440 || details.width > 1440) {
-//       if (details.top < -80) {
-//         appHeader.style.borderBottom = ' 2.5px solid rgb(191 ,219 ,254,0.3)'
-//         appHeader.style.backdropFilter = ' blur(10px)'
-//       }
-//     }
-//     if (details.top >= 0) {
-//       appHeader.style.borderBottom = 'none'
-//       appHeader.style.backdropFilter = 'unset'
-//     }
-//   });
-// }
+mounted(){
+  window.addEventListener("scroll", (e) => {
+    let details = document.body.getBoundingClientRect()
+    let appHeader = this.$refs.AppHeader
+    if (details.width < 640) {
+      if (details.top < -33) {
+        appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
+      }
+    }
+    else if (details.width < 840) {
+      if (details.top < -60) {
+  
+        appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
+      }
+    }
+    else if (details.width < 1024) {
+      if (details.top < -80) {
+        appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
+      }
+    }
+    else if (details.width < 1440 || details.width > 1440) {
+      if (details.top < -80) {
+        appHeader.style.borderBottom = ' 2.5px solid rgb(191 ,219 ,254,0.3)'
+        appHeader.style.backdropFilter = ' blur(10px)'
+      }
+    }
+    if (details.top >= 0) {
+      appHeader.style.borderBottom = 'none'
+      appHeader.style.backdropFilter = 'unset'
+    }
+  });
+}
 }
 </script>
 <style>

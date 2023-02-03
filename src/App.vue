@@ -1,6 +1,6 @@
 <template>
   <AppHeaderVue class="fixed" :isLoggedIn="isLoggedIn" />
-    <router-view :isLoggedIn="isLoggedIn"></router-view>
+    <router-view></router-view>
   <FooterComp />
 </template>
 
@@ -15,6 +15,11 @@ export default {
       isLoggedIn : false
     }
   },
+  computed : {
+    getLoginInfo(){
+      return this.isLoggedIn
+    }
+  },
   mounted() {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -23,7 +28,6 @@ export default {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         this.isLoggedIn = true
-        console.log(uid)
         // ...
       } else {
         // User is signed out
@@ -31,6 +35,7 @@ export default {
         this.isLoggedIn = false
       }
     });
+    console.log(this.$router)
   },
 }
 </script>
