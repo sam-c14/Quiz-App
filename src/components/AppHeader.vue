@@ -3,7 +3,7 @@
     <div class="flex py-3 pl-2 w-11/12 justify-between">
         <router-link to="/" class="text-sm font-bold">QuizGame</router-link>
         <div class="w-10/12 flex justify-around">
-            <router-link to="/quiz/science" class="text-sm tracking-wide font-medium">Quiz</router-link>
+            <router-link v-if="!isLoggedIn" to="/quiz/science" class="text-sm tracking-wide font-medium">Quiz</router-link>
             <!-- <router-link to="/result/:id" class="text-sm tracking-wide font-medium">Results</router-link> -->
             <router-link to="/login/science/easy" v-if="!isLoggedIn" class="text-sm tracking-wide font-medium">Login</router-link>
             <router-link to="/" @click="logout" v-else class="text-sm tracking-wide font-medium">Logout</router-link>
@@ -21,6 +21,7 @@ export default {
       const auth = getAuth();
       signOut(auth).then(() => {
         // Sign-out successful.
+        localStorage.clear()
       }).catch((error) => {
         // An error happened.
       });

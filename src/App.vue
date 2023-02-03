@@ -28,6 +28,7 @@ export default {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
         this.isLoggedIn = true
+        localStorage.setItem('isLoggedIn',JSON.stringify(this.isLoggedIn))
         // ...
       } else {
         // User is signed out
@@ -35,7 +36,6 @@ export default {
         this.isLoggedIn = false
       }
     });
-    console.log(this.$router)
   },
 }
 </script>

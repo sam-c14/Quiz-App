@@ -68,7 +68,7 @@
         </Teleport>
         <div class="my-4 pr-2 w-10/12 flex justify-end">
             <div class="">
-                <Btn @click="showAllQuiz" :direction="'right-long'" :icon="'btn'">View All Quizzes</Btn>
+                <Btn @click="showAllQuiz" class="all-quiz-btn" :direction="'right-long'" :icon="'btn'">View All Quizzes</Btn>
             </div>
         </div>
     </section>
@@ -83,12 +83,11 @@ export default {
     components: { Btn, QuizModal },
     mixins: [getImageUrl, changeRoute,getCountry],
     props : {
-        quizImages : Array,
-        isLoggedIn : Boolean
+        quizImages : Array
     },
     data(){
         return {
-            isScrolled : false,
+            isScrolled : false, // state to trigger hide or shoe of left arrow icon
             categories: ["arts", "sports", "music", "history", "movies", "general_knowledge", "science"],
             quizInfo : ["This quiz is based on arts","Test your knowledge on different sports","How much do you know music,  Click to Find out","Test your info on history","Like Movies? Check out some of your best movies","Want to know more on general topics? Click here","Science Geek? Find out more by clicking"],
             difficulty : '',
@@ -96,7 +95,7 @@ export default {
             category : '',
             months:['January','February','March','April','May','June','July','August','September','October','November','December'],
             currentDate : '',
-            isScrolledRightEnd : false
+            isScrolledRightEnd : false, // state to trigger display of right icon
         }
     },
     computed : {
@@ -127,7 +126,8 @@ export default {
             this.category = this.categories[index]
         },
         startQuiz(){
-            if(!this.isLoggedIn){
+            let isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
+            if(!isLoggedIn){
                 this.changeRoute('login', { category: this.category, difficulty: this.difficulty })
             }
             else{
@@ -140,8 +140,24 @@ export default {
             quizCardContainer.scrollTop += e.deltaY;
         },
         showAllQuiz(){
-            this.changeRoute('allQuiz', {  })
+            this.changeRoute('allQuiz', { })
         }
     }, 
 }
 </script>
+<style>
+@media (max-width:640px) {
+    .all-quiz-btn {
+        font-size: 14px !important;
+        padding-inline: 0.6rem !important;
+        padding-block : 0.4rem !important;
+    }
+}
+@media (max-width:840px) {
+    .all-quiz-btn {
+        font-size: 16px !important;
+        padding-inline: 0.6rem !important;
+        padding-block : 0.4rem !important;
+    }
+}
+</style>
