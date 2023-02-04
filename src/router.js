@@ -3,10 +3,12 @@ import LoginPage from "./pages/LoginPage.vue";
 import Home from "./pages/Home.vue";
 import ResultPage from "./pages/ResultPage.vue";
 import AllQuizPage from "./pages/AllQuizPage.vue";
+import SampleQuizPage from "./pages/SampleQuizPage.vue";
+import SampleResultPage from "./pages/SampleResultPage.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", name: "home", component: Home },
   {
     path: "/quiz/:category/:difficulty",
     name: "quiz",
@@ -30,6 +32,8 @@ const routes = [
     name: "allQuiz",
     component: AllQuizPage,
   },
+  { path: "/sample-quiz", component: SampleQuizPage },
+  { path: "/sample-result", component: SampleResultPage },
 ];
 
 const router = createRouter({
@@ -45,5 +49,4 @@ const router = createRouter({
     }
   },
 });
-
 export default router;

@@ -6,7 +6,7 @@
         <div class="h-full pt-8 sm:pt-10 lg:w-4/5">
             <div class="flex h-1/2 justify-center w-full">
                 <div class="w-10/12 md:justify-center gap-y-28 gap-x-6 justify-between lg:gap-8 lg:justify-end flex flex-wrap lg:flex-nowrap">
-                    <div @mouseover="showText" :ref="'circle'" v-for="(logo,index) in imgLogo" :key="logo" :id="index" class="h-1/3 relative md:h-1/2 rounded-full w-1/3 md:w-1/6 img-circle">
+                    <div @mouseover="showText" ref="circle" v-for="(logo,index) in imgLogo" :key="logo" :id="index" class="h-1/3 relative md:h-1/2 rounded-full w-1/3 md:w-1/6 img-circle">
                         <div>
                             <img :src="getImageUrl(logo)" class="w-full h-full rounded-full" alt="" srcset=""/>
                         </div>

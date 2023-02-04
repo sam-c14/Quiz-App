@@ -9,8 +9,8 @@
     <div class="w-full flex-wrap flex my-5">
       <div class="flex h-1/6 mb-5 w-10/12 justify-end">
         <div class="w-full flex flex-wrap justify-end">
-          <div class="w-10/12 py-2 text-end">
-            <label for="search-quiz">Filter By Alphabet</label>
+          <div class="w-10/12 py-2 mr-4 text-end">
+            <label for="search-quiz">Filter By Course</label>
           </div>
           <div class="xl:w-1/5 lg:w-1/4 md:w-1/3 relative">
             <div class="inline-flex w-full">

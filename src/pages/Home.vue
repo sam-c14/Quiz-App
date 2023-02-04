@@ -3,7 +3,7 @@
     <Banner @change-img="changeBackground" :heroInfo="heroInfo" :count="count" />
     <div class="flex z-20 bg-black relative w-full">
       <span style="left: 50%;" class="text-3xl cursor-pointer bg-gray-200 border absolute -bottom-5 border-gray-300 shadow-lg p-3 rounded-full text-black">
-        <a href="#card-content"><Btn></Btn></a>
+        <a @click="scrollDown"><Btn></Btn></a>
       </span>
     </div>
     <QuizCardSlider :quizImages="quizImages" />
@@ -48,6 +48,11 @@ export default {
   methods : {
     changeBackground(num) {
       this.count = num
+    },
+    scrollDown(){
+      document.documentElement.style.scrollBehavior = "smooth"
+      window.scrollTo(0,730)
+      document.documentElement.style.scrollBehavior = "auto"
     }
   },
   mounted(){

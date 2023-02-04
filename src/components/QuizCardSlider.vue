@@ -38,7 +38,7 @@
                     <button @click="this.quizSelected = false"
                         class="w-full my-2 hover:bg-blue-900 transition-all bg-blue-800 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer">Go
                         Back</button>
-                    <h1 class="my-2">You've selected the <span class="capitalize">{{ category }}</span> Quiz</h1>
+                    <h1 class="my-2">You've selected the <span class="capitalize font-semibold">{{ category }}</span> Quiz</h1>
                     <h1 class="my-2 font-semibold">Select Your Difficulty Level Below:</h1>
                 </template>
             

@@ -50,7 +50,10 @@ export default {
                    if(user){
                        this.email=this.password = ""
                    }
+                   if (this.$route.params.category !== 'none' && this.$route.params.difficulty !== 'none'){
                    this.changeRoute('quiz', { category: this.$route.params.category, difficulty: this.$route.params.difficulty })
+                    }
+                   else this.changeRoute('home', { })
                    // ...
                })
                .catch((error) => {
