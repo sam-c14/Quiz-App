@@ -219,7 +219,8 @@ export default {
     loadAnimationEnd() {
       if (this.isLoading) {
         setTimeout(() => {
-            this.$refs.loaderContainer.style.width="50%"
+            this.$refs.loaderContainer.style.width="100%"
+            this.$refs.loaderContainer.style.height="50%"
             this.$refs.loaderContainer.style.borderRadius = "999px";
             this.$refs.loaderContainer.style.transform = "scale(0.2)";
             setTimeout(() => {

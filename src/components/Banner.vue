@@ -4,7 +4,7 @@
             <Transition name="fade">
                 <div class="w-full h-full" :class="classes" v-if="index == count">
                     <div class="flex h-full pl-2 w-full sm:w-3/5 sm:pl-1 justify-end flex-wrap items-center">
-                        <HeroContent class="z-30 w-auto">
+                        <HeroContent class="z-30 pl-2  w-auto">
                             <template #header>
                                 <h1 class="text-white text-xl sm:text-2xl font-semibold my-1">{{heroInfo[index].header}}
                                 </h1>
