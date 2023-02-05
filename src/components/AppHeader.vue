@@ -1,14 +1,14 @@
 <template>
   <div ref="AppHeader" class="sm:text-gray-200 text-gray-700 py-1 z-50 w-full sm:h-auto h-10 top-0 app-header">
-    <div class="pr-3 sm:hidden flex justify-end">
+    <div class="px-3 sm:hidden flex justify-between">
+      <div class="sm:hidden block" v-if="isMenuShowing">
+        <CloseIcon @click="hideMenu" />
+      </div>
       <HamBurgerIcon @click="showMenu" />
     </div>
     <div ref="menu" class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap py-3 pl-2 sm:w-11/12 sm:justify-between">
         <div>
           <router-link to="/" class="sm:text-sm text-base font-bold">QuizGame</router-link>
-          <div class="sm:hidden block">
-            <CloseIcon @click="hideMenu"/>
-          </div>
         </div>
         <div class="sm:w-10/12 gap-y-8 w-full sm:flex-nowrap text-center sm:text-justify flex-wrap flex justify-center sm:justify-around">
             <router-link v-if="!isLoggedIn" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full text-base tracking-wide font-medium">Quiz</router-link>
@@ -41,11 +41,13 @@ export default {
       let appHeader = this.$refs.AppHeader
       appHeader.style.height = "auto"
       this.$refs.menu.style.width = "100%" 
+      this.isMenuShowing = true
     },
     hideMenu(){
       let appHeader = this.$refs.AppHeader
       appHeader.style.height = "2.5rem"
       this.$refs.menu.style.width = "0" 
+      this.isMenuShowing = false
     },
   },
 mounted(){

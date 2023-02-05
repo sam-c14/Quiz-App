@@ -2,7 +2,7 @@
 <div id="home-container">
     <Banner @change-img="changeBackground" :heroInfo="heroInfo" :count="count" />
     <div class="flex z-20 bg-black relative w-full">
-      <span style="left: 50%;" class="text-3xl cursor-pointer bg-gray-200 border absolute -bottom-5 border-gray-300 shadow-lg p-3 rounded-full text-black">
+      <span style="left: 50%;transition:all .5s" class="text-3xl cursor-pointer bg-gray-200 border absolute -bottom-5 border-gray-300 shadow-lg p-3 hover:text-blue-500 rounded-full text-black">
         <a @click="scrollDown"><Btn></Btn></a>
       </span>
     </div>

@@ -2,11 +2,11 @@
     <section class="my-10 relative">
         <h1 id="card-content" class="text-2xl md:text-3xl lg:text-5xl font-semibold text-center">Our Quiz</h1>
         <div class="absolute z-30 flex justify-between top-52 w-full">
-            <span :class="isScrolled ? 'opacity-100' : 'opacity-0'" class="text-4xl bg-white  p-3 rounded-full text-black"
+            <span style="transition:all .5s" :class="isScrolled ? 'opacity-100' : 'opacity-0'" class="text-4xl hover:text-blue-500 lg:scale-100 scale-90 bg-white  p-3 rounded-full text-black"
                 @click="scrollLeft">
                 <Btn :icon="'left'"></Btn>
             </span>
-            <span :class="!isScrolledRightEnd ? 'opacity-100' : 'opacity-0'" class="bg-white p-3 rounded-full text-black" @click="scrollRight">
+            <span style="transition:all .5s" :class="!isScrolledRightEnd ? 'opacity-100' : 'opacity-0'" class="bg-white p-3 hover:text-blue-500 lg:scale-100 scale-90 rounded-full text-black" @click="scrollRight">
                 <Btn :icon="'right'"></Btn>
             </span>
         </div>
@@ -24,7 +24,7 @@
                         <p class="text-xs text-blue-800">{{ getCountry }}</p>
                     </div>
                     <div class="w-full text-black">
-                        <h1 class="font-normal sm:w-full w-1/3 text-xs lg:text-sm">{{ quizInfo[index]}}</h1>
+                        <h1 class="font-normal sm:w-full text-xs lg:text-sm">{{ quizInfo[index]}}</h1>
                     </div>
                 </div>
             </div>
