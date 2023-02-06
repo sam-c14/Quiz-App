@@ -8,15 +8,15 @@
       <HamBurgerIcon v-else @click="showMenu" />
       </Transition>
     </div>
-    <div ref="menu" class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap py-3 pl-2 sm:w-11/12 sm:justify-between">
-        <div class="sm:my-0 mt-2 mb-7">
+    <div ref="menu" class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap  pl-2 sm:w-11/12 sm:justify-between">
+        <div class="sm:my-0 mt-2 mb-7 links border-b-4 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3">
           <router-link to="/" class="sm:text-sm text-base font-bold">QuizGame</router-link>
         </div>
         <div class="sm:w-10/12 gap-y-8 w-full sm:flex-nowrap text-center sm:text-justify flex-wrap flex justify-center sm:justify-around">
-            <router-link v-if="!isLoggedIn" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full text-base tracking-wide font-medium">Quiz</router-link>
-            <router-link to="/sample-result" class="sm:text-sm sm:w-auto w-full text-base tracking-wide font-medium">Results</router-link>
-            <router-link to="/login/none/none" v-if="!isLoggedIn" class="sm:text-sm sm:w-auto w-full text-base tracking-wide font-medium">Login</router-link>
-            <router-link to="/" @click="logout" v-else class="sm:text-sm sm:w-auto w-full text-base tracking-wide font-medium">Logout</router-link>
+            <router-link v-if="!isLoggedIn" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-4 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Sample Quiz</router-link>
+            <router-link to="/sample-result" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-4 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Results</router-link>
+            <router-link to="/login/none/none" v-if="!isLoggedIn" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-4 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Login</router-link>
+            <router-link to="/" @click="logout" v-else class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-4 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Logout</router-link>
         </div>
     </div>
   </div>
@@ -90,7 +90,7 @@ export default {
       appHeader.style.borderBottom = 'none'
       appHeader.style.backdropFilter = 'unset'
     }
-    localStorage.setItem("isListenerAdded", JSON.stringify(this.isListenerAdded))
+    sessionStorage.setItem("isListenerAdded", JSON.stringify(this.isListenerAdded))
   }
 }
   },
@@ -102,8 +102,9 @@ mounted(){
       appHeader.style.height = "auto"
       this.$refs.menu.style.width = "100%"
     }
+   
   })
-  let added = JSON.parse(localStorage.getItem("isListenerAdded"))
+  let added = JSON.parse(sessionStorage.getItem("isListenerAdded"))
   console.log(added)
   if(!added){
     window.addEventListener("scroll", this.scrollFunction);
@@ -111,7 +112,7 @@ mounted(){
 },
 unmounted(){
   window.removeEventListener('scroll',this.scrollFunction)
-  localStorage.removeItem("isListenerAdded")
+  sessionStorage.removeItem("isListenerAdded")
 },
 data(){
   return {
@@ -133,5 +134,8 @@ data(){
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+.links{
+transition: all .2s;
 }
 </style>

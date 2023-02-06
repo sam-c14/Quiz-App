@@ -37,6 +37,9 @@ export default {
       }
     });
   },
+  beforeUnmount(){
+    localStorage.clear()
+  }
 }
 </script>
 
