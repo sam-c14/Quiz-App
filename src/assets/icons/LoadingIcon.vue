@@ -1,7 +1,7 @@
 <template>
     <div class="w-14 h-14 relative bg-black m-auto grid place-items-center sizer rounded-full">
         <div class="bg-white grid loader place-items-center w-12 h-12 rounded-full">
-            <div class="w-10 h-10 grid fixed place-items-center bg-transparent rounded-full"><LoadingImage /></div>
+            <div class="w-10 h-10 grid fixed place-items-center bg-transparent rounded-full"><LoadingImage class="absolute w-8 h-8" /></div>
         </div>
     </div>
 </template>

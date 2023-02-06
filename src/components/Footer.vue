@@ -3,7 +3,12 @@
         <div class="bg-black py-3 pb-1">
             <div>
                 <div class="w-full my-2 h-full flex flex-wrap sm:flex-nowrap">
-                    <div class="w-full sm:w-1/2 h-full sm:my-0 my-2 text-center"><p class="font-bold text-white md:text-xl lg:text-2xl">QuizGame</p></div>
+                    <div class="w-full sm:w-1/2 h-full sm:my-0 my-2 text-center">
+                        <div class="flex gap-x-1 justify-center items-center">
+                            <p class="font-bold text-white md:text-xl lg:text-2xl">QuizGame</p>
+                            <LoadingImage class="w-6 h-6 mt-1 text-white" />
+                        </div>
+                    </div>
                     <div class="w-full sm:block flex justify-center xl:w-2/5 sm:w-1/2">
                         <div class="w-1/2 h-full justify-end flex gap-3">
                             <div v-for="(img,index) in footerImgLinks" :key="img"
@@ -26,8 +31,9 @@
 <script>
 import Btn from "../components/Btn.vue"
 import getImageUrl from "../utilities/mixins/getImageUrl"
+import LoadingImage from "../assets/icons/LoadingImage.vue";
 export default {
-    components: { Btn },
+    components: { Btn, LoadingImage },
     mixins: [getImageUrl],
     data(){
         return {

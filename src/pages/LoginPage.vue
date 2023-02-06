@@ -1,6 +1,6 @@
 <template>
 <div class="flex mb-2 flex-wrap wrapping-container justify-center items-center">
-    <div class="m-2 bg-white border-2 xl:py-5 lg:py-3 md:py-4 py-5 xl:w-1/3 lg:w-1/2  md:w-3/5 w-11/12 rounded-md px-3 sm:px-5">
+    <div class="m-2 bg-white border-2 xl:py-5 lg:py-3 md:py-4 py-5 xl:w-1/3 lg:w-2/5  md:w-1/2 w-11/12 rounded-md px-3 sm:px-5">
         <h1 class="w-full text-center font-bold capitalize sm:text-3xl text-xl mb-3" v-if="!userSignUp">login</h1>
         <h1 class="w-full text-center font-bold capitalize sm:text-3xl text-xl mb-3" v-else>Sign Up</h1>
         <p class="w-full text-center text-xs sm:text-sm opacity-50 mb-4">Enter your credentials here</p>
@@ -70,9 +70,12 @@ export default {
                     const user = userCredential.user;
                     if (user) {
                         this.email = this.password = ""
-                    } console.log(user)
+                    }
                    
-                    this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
+                    if (this.$route.params.category !== 'none' && this.$route.params.difficulty !== 'none') {
+                        this.changeRoute('quiz', { category: this.$route.params.category, difficulty: this.$route.params.difficulty })
+                    }
+                    else this.changeRoute('home', {})
                     // ...
                 })
                 .catch((error) => {
@@ -86,8 +89,6 @@ export default {
     beforeUnmount(){
         console.log(this.email)
         console.log(this.password)
-        
-        // this.changeRoute('quiz', { category: this.$route.category, difficulty: this.$route.difficulty })
     },
 }
 </script>
@@ -106,7 +107,10 @@ export default {
         background-position: 15% 50%;
     }
 }
-@media (min-width:1024px) {
+@media (min-width:640px) {
     .wrapping-container {height:100vh }
+}
+@media (max-width:640px) {
+    .wrapping-container {height:80vh }
 }
 </style>
