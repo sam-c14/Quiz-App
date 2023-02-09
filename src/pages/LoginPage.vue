@@ -17,9 +17,9 @@
             <p @click="userSignUp = !userSignUp" class="text-blue-600  pl-1 text-xs my-3" v-if="!userSignUp">Don't have an account? <a class="text-inherit no-underline">Sign Up</a></p>
             <p @click="userSignUp = !userSignUp"  class="text-blue-600  pl-1 text-xs my-3" v-else>Have an account? <a class="text-inherit no-underline">Login</a></p>
             <button
-                class="w-full my-2 bg-blue-900 text-gray-200 rounded-md py-2 font-semibold text-xs sm:text-sm uppercase tracking-wider cursor-pointer" v-if="!userSignUp" @click="login">login</button>
+                class="w-full my-2 bg-blue-900 btn-transition hover:bg-blue-700 text-gray-200 rounded-md py-2 font-semibold text-xs sm:text-sm uppercase tracking-wider cursor-pointer" v-if="!userSignUp" @click="login">login</button>
             <button
-                class="w-full my-2 bg-blue-900 text-gray-200 rounded-md py-2 font-semibold text-xs sm:text-sm uppercase tracking-wider cursor-pointer" v-else @click="signUp">Sign Up</button>
+                class="w-full my-2 bg-blue-900 btn-transition hover:bg-blue-700 text-gray-200 rounded-md py-2 font-semibold text-xs sm:text-sm uppercase tracking-wider cursor-pointer" v-else @click="signUp">Sign Up</button>
         </form>
     </div>
 </div>
@@ -84,11 +84,7 @@ export default {
                     console.log(errorCode)
                     // ..
                 });
-        }
-    },
-    beforeUnmount(){
-        console.log(this.email)
-        console.log(this.password)
+        },
     },
 }
 </script>
@@ -101,7 +97,9 @@ export default {
     background-size: cover;
     animation: pan 6s infinite alternate linear;
 }
-
+.btn-transition{
+    transition:all .2s
+}
 @keyframes pan {
     100% {
         background-position: 15% 50%;

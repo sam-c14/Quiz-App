@@ -18,10 +18,13 @@
           </div>
         </div>
         <div class="sm:w-10/12 gap-y-8 w-full sm:flex-nowrap text-center sm:text-justify flex-wrap flex justify-center sm:justify-around">
-            <router-link v-if="!isLoggedIn" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Sample Quiz</router-link>
-            <router-link to="/sample-result" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Results</router-link>
-            <router-link to="/login/none/none" v-if="!isLoggedIn" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Login</router-link>
+            <router-link v-if="!loginStatus" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Sample Quiz</router-link>
+            <router-link to="/sample-result" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-none border-opacity-0 rounded-b-sm px-1 hover:border-b-2 border-white py-3 font-medium">Results</router-link>
+            <router-link to="/login/none/none" v-if="!loginStatus" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Login</router-link>
             <router-link to="/" @click="logout" v-else class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Logout</router-link>
+        </div>
+        <div>
+          <button @click="$emit('toggle-dark-mode')" class="border p-1 px-3 h-full text-xs text-white rounded-sm bg-blue-500">Dark Mode</button>
         </div>
     </div>
   </div>
@@ -32,15 +35,17 @@ import HamBurgerIcon from "../assets/icons/HamBurgerIcon.vue";
 import CloseIcon from "../assets/icons/CloseIcon.vue";
 import LoadingImage from "../assets/icons/LoadingImage.vue";
 import { getAuth,signOut} from "../utilities/firebase"
+import { mapState } from 'pinia'
+import { useAuthStore } from "../store/auth";
+import { useNavbarStore } from "../store/navbar-store";
+import { useUniversalStore } from "../store/universal";
 export default {
   components : {HamBurgerIcon,CloseIcon,LoadingImage},
-  props : ["isLoggedIn"],
   methods: {
     logout(){
       const auth = getAuth();
       signOut(auth).then(() => {
         // Sign-out successful.
-        localStorage.clear()
       }).catch((error) => {
         // An error happened.
       });
@@ -64,47 +69,47 @@ export default {
       }
     },
     scrollFunction(e){
-  this.isListenerAdded = true
-  let details = document.documentElement.getBoundingClientRect()
-  let appHeader = this.$refs.AppHeader
-  if (appHeader != null || details != null) {
-    if (details.width < 640) {
-      if (details.top < -33) {
-        this.isScrolled = true
-        appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
-        appHeader.style.backdropFilter = ' blur(10px)'
+      let details = document.documentElement.getBoundingClientRect()
+      let appHeader = this.$refs.AppHeader
+      if (appHeader != null || details != null) {
+        if (details.width < 640) {
+          if (details.top < -33) {
+            this.isScrolled = true
+            appHeader.style.borderBottom = ' 4px solid rgb(191 ,219 ,254,0.3)'
+            appHeader.style.backdropFilter = ' blur(10px)'
+          }
+        }
+      else if (details.width < 840) {
+        if (details.top < -60) {
+          this.isScrolled = true
+          appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
+          appHeader.style.backdropFilter = ' blur(10px)'
+        }
       }
-    }
-    else if (details.width < 840) {
-      if (details.top < -60) {
-        this.isScrolled = true
-        appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
-        appHeader.style.backdropFilter = ' blur(10px)'
+      else if (details.width < 1024) {
+        if (details.top < -80) {
+          this.isScrolled = true
+          appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
+          appHeader.style.backdropFilter = ' blur(10px)'
+        }
       }
-    }
-    else if (details.width < 1024) {
-      if (details.top < -80) {
-        this.isScrolled = true
-        appHeader.style.borderBottom = ' 2px solid rgb(191 ,219 ,254,0.3)'
-        appHeader.style.backdropFilter = ' blur(10px)'
+      else if (details.width < 1440 || details.width > 1440) {
+        if (details.top < -80) {
+          this.isScrolled = true
+          appHeader.style.borderBottom = ' 2.5px solid rgb(191 ,219 ,254,0.3)'
+          appHeader.style.backdropFilter = ' blur(10px)'
+        }
       }
-    }
-    else if (details.width < 1440 || details.width > 1440) {
-      if (details.top < -80) {
-        this.isScrolled = true
-        appHeader.style.borderBottom = ' 2.5px solid rgb(191 ,219 ,254,0.3)'
-        appHeader.style.backdropFilter = ' blur(10px)'
+      if (details.top >= 0) {
+        this.isScrolled = false
+        appHeader.style.borderBottom = 'none'
+        appHeader.style.backdropFilter = 'unset'
       }
-    }
-    if (details.top >= 0) {
-      this.isScrolled = false
-      appHeader.style.borderBottom = 'none'
-      appHeader.style.backdropFilter = 'unset'
-    }
-    sessionStorage.setItem("isListenerAdded", JSON.stringify(this.isListenerAdded))
+    const store = useNavbarStore()
+    store.setListenerStatus(true)
   }
-}
-  },
+},
+},
 mounted(){
   window.addEventListener('resize',()=>{
     let details = document.documentElement.getBoundingClientRect()
@@ -114,27 +119,27 @@ mounted(){
       this.$refs.menu.style.width = "100%"
     }
   })
-  let added = JSON.parse(sessionStorage.getItem("isListenerAdded"))
-  console.log(added)
-  if(!added){
+  const store = useNavbarStore()
+  if(!store.listenerStatus){
     window.addEventListener("scroll", this.scrollFunction);
   }
 },
 unmounted(){
   window.removeEventListener('scroll',this.scrollFunction)
-  sessionStorage.removeItem("isListenerAdded")
+
 },
 data(){
   return {
     isMenuShowing : false,
-    isListenerAdded : false,
-    isScrolled : false
+    isScrolled : false,
   }
 },
 computed : {
   setColor(){
     return this.isScrolled ? 'text-black' : 'text-white'
-  }
+  },
+  ...mapState(useAuthStore, ['loginStatus']),
+  // ...mapState(useUniversalStore, ['darkModeStatus']),
 }
 }
 </script>

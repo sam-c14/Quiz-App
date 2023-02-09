@@ -24,7 +24,7 @@
             </Transition>
         </div>
         <div class="pb-3 z-10 flex items-end justify-end w-10/12">
-            <Pagination @change-background = "changeImg" class="" :arr="imgClasses" :count="count + 1" :counter="1" />
+            <Pagination @change-background = "changeImg" :arr="imgClasses" :count="count + 1" :counter="1" />
         </div>
     </div>
 </template>

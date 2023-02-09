@@ -1,6 +1,6 @@
 <template>
     <section class="my-10 relative">
-        <h1 id="card-content" class="text-2xl md:text-3xl lg:text-5xl font-semibold text-center">Our Quiz</h1>
+        <h1 id="card-content" ref="cardContent" class="text-2xl md:text-3xl lg:text-5xl font-semibold text-center">Our Quiz</h1>
         <div class="absolute z-30 flex justify-between top-52 w-full">
             <span style="transition:all .5s" :class="isScrolled ? 'opacity-100' : 'opacity-0'" class="text-4xl hover:text-blue-500 lg:scale-100 scale-90 bg-white  p-3 rounded-full text-black"
                 @click="scrollLeft">
@@ -14,7 +14,7 @@
             class="grid mt-5 grid-flow-col pl-5 lg:pl-36 scroll-smooth z-0 gap-x-3 relative quiz-card-container overflow-x-auto py-4"
             ref="quizCardContainer">
             <div @click="selectQuiz(index)" v-for="(item,index) in quizImages.length" :key="item"
-                class="lg:h-96 lg:w-72 md:h-60 md:w-44 h-64 w-48  overflow-hidden bg-black shadow-md flex-wrap flex quiz-card">
+                class="lg:h-96 lg:w-72 md:h-60 md:w-44 h-64 w-48 overflow-hidden bg-black shadow-md flex-wrap flex quiz-card" id="quiz-card">
                 <div class="w-full h-3/4">
                     <img class="h-full w-full" :src="getImageUrl(quizImages[index])" alt="">
                 </div>

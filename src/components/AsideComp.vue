@@ -26,7 +26,7 @@ export default {
     mixins: [getImageUrl],
     data(){
         return{
-            imgLogo: ["Api_logo.jpg", "Firebase_logo.jpg", "Tailwind_logo_2.jpg", "Vue_Js_Logo.jpg"],
+            imgLogo: ["Api_logo.jpg", "Firebase_logo.jpg", "Tailwind_logo_3.jpg", "Vue_Js_Logo.jpg"],
             backgroundImgs : ["Api_Background.jpg","Firebase_Background_2.jpg","Tailwind_Background.jpg","Vue_Background.jpg"],
             currentTag:'',
             newTagArr : [],
@@ -98,7 +98,7 @@ export default {
 }
 @media (max-width : 640px) {
     .aside-img{
-        height: 130vh !important;
+        height: 100vh !important;
     }
     .text{
         font-size: 12px !important;
