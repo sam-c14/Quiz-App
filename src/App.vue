@@ -12,10 +12,17 @@ import {useAuthStore} from "./store/auth"
 import {useUniversalStore} from "./store/universal"
 export default {
   components:{AppHeaderVue,FooterComp},
+  beforeMount(){
+    if (localStorage.getItem("universalStore")) {
+      const state = JSON.parse(localStorage.getItem("universalStore"))
+      const store = useUniversalStore()
+      store.$state = state
+      this.toggleDarkMode(!store.darkModeStatus)
+    }
+  },
   mounted() {
     const auth = getAuth();
     const store = useAuthStore()
-    console.log(store.loginStatus)
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -28,16 +35,14 @@ export default {
         // ...
         store.setLoginStatus(false)
       }
+      const label = document.getElementById("label")
+      console.log(label)
     });
-    console.log(store.loginStatus)
-    // this.toggleDarkMode()
-    const universalStore = useUniversalStore()
-    console.log(universalStore.darkModeStatus)
   },
   methods : {
-    toggleDarkMode() {
-      const store = useUniversalStore()
-      let prev = store.darkModeStatus
+    toggleDarkMode(prev = '') {
+      let store = useUniversalStore()
+      if(prev === '') prev = store.darkModeStatus
       store.setDarkModeStatus(!prev)
       if (store.darkModeStatus) {
         document.documentElement.style.transition = "background .2s"
@@ -51,8 +56,8 @@ export default {
           })
         }
         const label = document.getElementById("label")
+        console.log(label)
         label ? label.style.color = "#bbb" : ''
-        document.scrollingElement.st
       }
       else {
         document.documentElement.style.backgroundColor = "white"
@@ -67,6 +72,7 @@ export default {
         const label = document.getElementById("label")
         label ? label.style.color = "#000" : ''
       }
+      localStorage.setItem("universalStore", JSON.stringify(store.$state));
     }
   }
 }

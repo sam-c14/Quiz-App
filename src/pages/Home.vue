@@ -86,7 +86,7 @@ body{
   height: 0px;
 }
 ::-webkit-scrollbar-thumb{
-  border: .25em solid white;
+  border: .25em solid inherit;
   background: gray;
   border-radius: 100vw;
 }

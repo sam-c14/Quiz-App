@@ -79,6 +79,7 @@ import getImageUrl from "../utilities/mixins/getImageUrl"
 import QuizModal from "../components/Modal.vue"
 import changeRoute from "../utilities/mixins/changeRoute"
 import getCountry from '../utilities/mixins/getCountry'
+import { useUniversalStore } from "../store/universal"
 export default {
     components: { Btn, QuizModal },
     mixins: [getImageUrl, changeRoute,getCountry],
@@ -143,6 +144,34 @@ export default {
             this.changeRoute('allQuiz', { })
         }
     }, 
+    mounted(){
+        const store = useUniversalStore()
+        if (store.darkModeStatus) {
+            const cardContent = document.getElementById('card-content')
+            cardContent ? cardContent.style.color = "#ccc" : ""
+            const cards = [...document.querySelectorAll('#quiz-card')]
+            if (cards.length > 1) {
+                cards.map(card => {
+                    card.style.border = "1px solid #aaa"
+                })
+            }
+            const label = document.getElementById("label")
+            console.log(label)
+            label ? label.style.color = "#bbb" : ''
+        }
+        else {
+            const cardContent = document.getElementById('card-content')
+            cardContent ? cardContent.style.color = "#000" : ""
+            const cards = [...document.querySelectorAll('.quiz-card')]
+            if (cards.length > 1) {
+                cards.map(card => {
+                    card.style.border = "none"
+                })
+            }
+            const label = document.getElementById("label")
+            label ? label.style.color = "#000" : ''
+        }
+    }
 }
 </script>
 <style>

@@ -10,7 +10,7 @@
       <div class="flex h-1/6 mb-5 w-10/12 justify-end">
         <div class="w-full flex flex-wrap justify-end">
           <div class="w-10/12 py-2 mr-4 text-end">
-            <label for="search-quiz" id="label">Filter By Course</label>
+            <label for="search-quiz" id="card-content">Filter By Course</label>
           </div>
           <div class="xl:w-1/5 lg:w-1/4 md:w-1/3 relative">
             <div class="inline-flex w-full">
@@ -208,19 +208,32 @@ export default {
           "scale(1)";
       });
     });
-    // const store = useUniversalStore()
-    // if (store.darkModeStatus) {
-    //   this.$refs.label.style.color = "#eee"
-    // }
-    // else this.$refs.label.style.color = "#000"
-  },
-  updated(){
-    // const store = useUniversalStore()
-    // if (store.darkModeStatus) {
-    //   this.$refs.label.style.color = "#eee"
-    // }
-    // else this.$refs.label.style.color = "#000"
-    console.log("updated")
+    const store = useUniversalStore()
+    if (store.darkModeStatus) {
+      const cardContent = document.getElementById('card-content')
+      cardContent ? cardContent.style.color = "#ccc" : ""
+      const cards = [...document.querySelectorAll('#quiz-card')]
+      if (cards.length > 1) {
+        cards.map(card => {
+          card.style.border = "none"
+        })
+      }
+      const label = document.getElementById("label")
+      console.log(label)
+      label ? label.style.color = "#bbb" : ''
+    }
+    else {
+      const cardContent = document.getElementById('card-content')
+      cardContent ? cardContent.style.color = "#000" : ""
+      const cards = [...document.querySelectorAll('.quiz-card')]
+      if (cards.length > 1) {
+        cards.map(card => {
+          card.style.border = "none"
+        })
+      }
+      const label = document.getElementById("label")
+      label ? label.style.color = "#000" : ''
+    }
   },
   beforeRouteLeave(to, from, next) {
     localStorage.clear(); //Allow us to repeat animation after leaving route by clearing localStorage
