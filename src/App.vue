@@ -36,7 +36,6 @@ export default {
         store.setLoginStatus(false)
       }
       const label = document.getElementById("label")
-      console.log(label)
     });
   },
   methods : {
@@ -60,7 +59,7 @@ export default {
         label ? label.style.color = "#bbb" : ''
       }
       else {
-        document.documentElement.style.backgroundColor = "white"
+        document.documentElement.style.backgroundColor = "#eee"
         const cardContent = document.getElementById('card-content')
         cardContent ? cardContent.style.color = "#000" : ""
         const cards = [...document.querySelectorAll('.quiz-card')]

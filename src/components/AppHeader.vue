@@ -1,5 +1,5 @@
 <template>
-  <div ref="AppHeader" class="sm:text-gray-200 text-gray-700 py-1 z-50 w-full sm:h-auto h-10 top-0 app-header">
+  <div ref="AppHeader" class="sm:text-gray-200 text-gray-700 py-1 z-50 w-full sm:h-auto h-14 top-0 app-header">
     <div class="px-3 sm:hidden flex justify-between">
       <Transition name="fade" mode="out-in">
       <div class="sm:hidden block" v-if="isMenuShowing">
@@ -9,7 +9,7 @@
       </Transition>
     </div>
     <div ref="menu" class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap  pl-2 sm:w-11/12 sm:justify-between">
-        <div class="sm:my-0 mt-2 mb-7 links border-b-2  border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3">
+        <div class="sm:my-0 mt-2 mb-7 links border-b-none rounded-b-sm px-1 hover:border-b-2 border-white py-3">
           <div class="flex justify-between gap-x-1">
             <router-link to="/" class="sm:text-sm mt-0.5 text-base font-bold">QuizGame</router-link>
             <span>
@@ -18,10 +18,10 @@
           </div>
         </div>
         <div class="sm:w-10/12 gap-y-8 w-full sm:flex-nowrap text-center sm:text-justify flex-wrap flex justify-center sm:justify-around">
-            <router-link v-if="!loginStatus" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Sample Quiz</router-link>
-            <router-link to="/sample-result" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-none border-opacity-0 rounded-b-sm px-1 hover:border-b-2 border-white py-3 font-medium">Results</router-link>
-            <router-link to="/login/none/none" v-if="!loginStatus" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Login</router-link>
-            <router-link to="/" @click="logout" v-else class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-2 border-opacity-0 rounded-b-sm px-1 hover:border-opacity-100 border-white py-3 font-medium">Logout</router-link>
+            <router-link v-if="!loginStatus" to="/sample-quiz" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-none rounded-b-sm px-1 hover:border-b-2 border-white py-3 font-medium">Sample Quiz</router-link>
+            <router-link to="/sample-result" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-none  rounded-b-sm px-1 hover:border-b-2 border-white py-3 font-medium">Results</router-link>
+            <router-link to="/login/none/none" v-if="!loginStatus" class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-none rounded-b-sm px-1 hover:border-b-2 border-white py-3 font-medium">Login</router-link>
+            <router-link to="/" @click="logout" v-else class="sm:text-sm sm:w-auto w-full links text-base tracking-wide border-b-none rounded-b-sm px-1 hover:border-b-2 border-white py-3 font-medium">Logout</router-link>
         </div>
         <div>
           <button @click="$emit('toggle-dark-mode')" class="border p-1 px-3 h-full text-xs text-white rounded-sm bg-blue-500">Dark Mode</button>

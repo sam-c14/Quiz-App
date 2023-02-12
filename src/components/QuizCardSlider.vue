@@ -80,6 +80,7 @@ import QuizModal from "../components/Modal.vue"
 import changeRoute from "../utilities/mixins/changeRoute"
 import getCountry from '../utilities/mixins/getCountry'
 import { useUniversalStore } from "../store/universal"
+import {useAuthStore} from "../store/auth"
 export default {
     components: { Btn, QuizModal },
     mixins: [getImageUrl, changeRoute,getCountry],
@@ -127,8 +128,8 @@ export default {
             this.category = this.categories[index]
         },
         startQuiz(){
-            let isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'))
-            if(!isLoggedIn){
+            let store = useAuthStore()
+            if(!store.isLoggedIn){
                 this.changeRoute('login', { category: this.category, difficulty: this.difficulty })
             }
             else{
