@@ -12,13 +12,16 @@ import {useAuthStore} from "./store/auth"
 import {useUniversalStore} from "./store/universal"
 export default {
   components:{AppHeaderVue,FooterComp},
-  beforeMount(){
+  created(){
     if (localStorage.getItem("universalStore")) {
       const state = JSON.parse(localStorage.getItem("universalStore"))
       const store = useUniversalStore()
       store.$state = state
       this.toggleDarkMode(!store.darkModeStatus)
     }
+  },
+  beforeMount(){
+  
   },
   mounted() {
     const auth = getAuth();

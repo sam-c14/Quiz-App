@@ -30,14 +30,18 @@
     </aside>
   </section>
   <div class="grid place-items-center mt-3 pb-4">
-   <span @click="endQuiz" class="p-0.5 rounded-md border-2 transition-all border-opacity-0 hover:border-opacity-100 border-white"><button class="px-5 py-3 text-white rounded-sm uppercase text-xs" style="background-color: #333E48;">done</button></span>
+   <span @click="endQuiz" class="p-0.5 rounded-md border-2 transition-all border-opacity-0 hover:border-opacity-100 border-white"><button @click="hasQuizEnded = true" class="px-5 py-3 text-white rounded-sm uppercase text-xs" style="background-color: #333E48;">done</button></span>
+  </div>
+  <div class="flex justify-center">
+    <TimerVue :testDone="hasQuizEnded"/>
   </div>
 </div>
 </template>
 <script>
 import Pagination from '../components/Pagination.vue'
+import TimerVue from '../components/Timer.vue'
 export default {
-    components : {Pagination},
+    components : {Pagination, TimerVue},
     data(){
         return {
             questionArr: [
@@ -135,7 +139,8 @@ export default {
             tempQuestionArr : [],
             count: 0,
             isUpdateBtnClicked: false,
-            selectedOptions : []
+            selectedOptions : [],
+            hasQuizEnded : false
         }
     },
     mounted() {
@@ -194,6 +199,6 @@ export default {
     }
 }
 </script>
-<style lang="">
+<style>
     
 </style>

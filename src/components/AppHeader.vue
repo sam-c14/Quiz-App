@@ -9,7 +9,7 @@
       </Transition>
     </div>
     <div ref="menu" class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap  pl-2 sm:w-11/12 sm:justify-between">
-        <div class="sm:my-0 mt-2 mb-7 links border-b-none rounded-b-sm px-1 hover:border-b-2 border-white py-3">
+        <div class="sm:my-0 mt-2 mb-7 links border-b-none hover:border-b-2 rounded-b-sm px-1 border-white py-3">
           <div class="flex justify-between gap-x-1">
             <router-link to="/" class="sm:text-sm mt-0.5 text-base font-bold">QuizGame</router-link>
             <span>
@@ -157,6 +157,6 @@ computed : {
   opacity: 0;
 }
 .links{
-transition: all .2s;
+transition: all .1s;
 }
 </style>
