@@ -12,8 +12,8 @@ export default {
     },
     data(){
         return{
-            minutes : 0,
-            seconds : 0,
+            minutes : 15,
+            seconds : 59,
             timerInterval : '',
             secondStr : '00'
         }
@@ -21,21 +21,21 @@ export default {
     methods:{
         startTimer(){
             this.timerInterval=setInterval(()=>{
-                this.seconds++
+                this.seconds--
                 if (this.seconds % 10 === this.seconds) {
                     this.secondStr = "0" + this.seconds
                 }
                 else this.secondStr = this.seconds
-                if(this.seconds == 60){
-                    this.seconds = 0
-                    this.secondStr = "0" + this.seconds
-                    this.minutes++ 
+                if(this.seconds === 0){
+                    this.seconds = 59
+                    // this.secondStr = "0" + this.seconds
+                    this.minutes-- 
                 }
             },100)
         }
     },
     beforeUpdate(){
-        if(this.testDone == true){
+        if(this.testDone == true || (this.seconds === 0 && this.minutes === 0)){
             clearInterval(this.timerInterval)
         }
     },

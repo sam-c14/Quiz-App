@@ -30,9 +30,13 @@
     </aside>
   </section>
   <div class="grid place-items-center mt-3 pb-4">
-   <span @click="endQuiz" class="p-0.5 rounded-md border-2 transition-all border-opacity-0 hover:border-opacity-100 border-white"><button class="px-5 py-3 text-white rounded-sm uppercase text-xs" style="background-color: #333E48;">done</button></span>
+   <span @click="endQuiz" class="p-0.5 rounded-md border-2 transition-all border-opacity-0 hover:border-opacity-100 border-white"><button @click="hasQuizEnded = true" class="px-5 py-3 text-white rounded-sm uppercase text-xs" style="background-color: #333E48;">done</button></span>
+  </div>
+  <div class="flex justify-center">
+      <TimerVue :testDone="hasQuizEnded" />
   </div>
 </div>
+
 
 <ResultModal v-if="endQuizSession">
     <template #header>
@@ -61,8 +65,9 @@ import ResultModal from "../components/Modal.vue"
 import Pagination from "../components/Pagination.vue"
 import getQuestions from "../utilities/mixins/getQuestions"
 import changeRoute from "../utilities/mixins/changeRoute"
+import TimerVue from '../components/Timer.vue'
 export default {
-    components :{ResultModal,Pagination},
+    components: { ResultModal, Pagination, TimerVue },
     mixins : [getQuestions,changeRoute],
     data(){
         return {
@@ -76,7 +81,8 @@ export default {
             endQuizSession : false,
             error :'',
             questions: '',
-            category : this.$route.params.category
+            category : this.$route.params.category,
+            hasQuizEnded: false
         }
     },
     mounted(){
