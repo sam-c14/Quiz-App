@@ -1,11 +1,10 @@
 <template>
   <div style="background-color: #007faa" class="relative">
-    <header class="header">
+    <header class="">
       <h1
-        class="font-bold text-white text-center sm:text-xl text-base py-3 capitalize"
+        class="font-bold text-white text-center sm:text-xl text-base py-10 capitalize"
+        >Sample Quiz</h1
       >
-        Sample Quiz
-      </h1>
     </header>
 
     <section class="grid place-items-center">
@@ -39,9 +38,8 @@
             <button
               @click="renderPreviousPage"
               class="py-2 px-3 rounded sm:text-sm text-xs bg-slate-600 text-white"
+              >Prev</button
             >
-              Prev
-            </button>
           </div>
         </div>
         <Pagination :arr="questionArr" :count="count" :counter="5" />
@@ -52,9 +50,8 @@
             <button
               @click="renderNextPage"
               class="py-2 px-3 rounded sm:text-sm text-xs bg-slate-600 text-white"
+              >Next</button
             >
-              Next
-            </button>
           </div>
         </div>
       </aside>
@@ -64,19 +61,23 @@
         @click="endQuiz"
         class="p-0.5 rounded-md border-2 transition-all border-opacity-0 hover:border-opacity-100 border-white"
         ><button
+          @click="hasQuizEnded = true"
           class="px-5 py-3 text-white rounded-sm uppercase text-xs"
           style="background-color: #333e48"
-        >
-          done
-        </button></span
+          >done</button
+        ></span
       >
+    </div>
+    <div class="flex justify-center">
+      <TimerVue :testDone="hasQuizEnded" />
     </div>
   </div>
 </template>
 <script>
 import Pagination from "../components/Pagination.vue";
+import TimerVue from "../components/Timer.vue";
 export default {
-  components: { Pagination },
+  components: { Pagination, TimerVue },
   data() {
     return {
       questionArr: [
@@ -175,6 +176,7 @@ export default {
       count: 0,
       isUpdateBtnClicked: false,
       selectedOptions: [],
+      hasQuizEnded: false,
     };
   },
   mounted() {
@@ -257,8 +259,4 @@ export default {
   },
 };
 </script>
-<style>
-.header {
-  padding-top: 5vh;
-}
-</style>
+<style></style>

@@ -24,7 +24,7 @@ const routes = [
 
       return {
         resultArr: resultArr === "" ? [] : resultArr.split(","),
-      };
+      };// To pass the full result array to the result page
     },
   },
   {
