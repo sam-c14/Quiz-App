@@ -1,102 +1,119 @@
-<template> 
-<div id="home-container">
-    <Banner @change-img="changeBackground" :heroInfo="heroInfo" :count="count" />
+<template>
+  <div id="home-container">
+    <Banner
+      @change-img="changeBackground"
+      :heroInfo="heroInfo"
+      :count="count"
+    />
     <div class="flex z-20 bg-black relative w-full">
-      <span style="left: 50%;transition:all .5s" class="text-3xl cursor-pointer bg-gray-200 border absolute -bottom-5 border-gray-300 shadow-lg p-3 hover:text-blue-500 rounded-full text-black">
+      <span
+        style="left: 50%; transition: all 0.5s"
+        class="text-3xl cursor-pointer bg-gray-200 border absolute -bottom-5 border-gray-300 shadow-lg p-3 hover:text-blue-500 rounded-full text-black"
+      >
         <a @click="scrollDown"><Btn></Btn></a>
       </span>
     </div>
     <QuizCardSlider :quizImages="quizImages" />
     <AboutQuiz :quizImages="quizImages" :asideImgCount="asideImgCount" />
     <AsideComp />
-</div>
+  </div>
 </template>
 
 <script>
-import Btn from "../components/Btn.vue"
-import getImageUrl from "../utilities/mixins/getImageUrl"
-import QuizCardSlider from "../components/QuizCardSlider.vue"
-import AboutQuiz from "../components/AboutQuiz.vue"
-import AsideComp from "../components/AsideComp.vue"
-import Banner from "../components/Banner.vue"
+import Btn from "../components/Btn.vue";
+import getImageUrl from "../utilities/mixins/getImageUrl";
+import QuizCardSlider from "../components/QuizCardSlider.vue";
+import AboutQuiz from "../components/AboutQuiz.vue";
+import AsideComp from "../components/AsideComp.vue";
+import Banner from "../components/Banner.vue";
 export default {
-  components : {Banner,Btn,QuizCardSlider,AboutQuiz,AsideComp},
+  components: { Banner, Btn, QuizCardSlider, AboutQuiz, AsideComp },
   mixins: [getImageUrl],
-  data(){
-    return{
-      interval:"",
-      count : 0,
-      asideImgCount : 0,
-      quizImages : ["Art_Quiz_5.jpg","Golf_Quiz.jpg","History_Quiz_2.jpg","History_Quiz.jpg","Movie_Quiz_4.jpg","OIP.jpg","Science_Quiz_2.jpg"],
+  data() {
+    return {
+      interval: "",
+      count: 0,
+      asideImgCount: 0,
+      quizImages: [
+        "Art_Quiz_5.jpg",
+        "Golf_Quiz.jpg",
+        "History_Quiz_2.jpg",
+        "History_Quiz.jpg",
+        "Movie_Quiz_4.jpg",
+        "OIP.jpg",
+        "Science_Quiz_2.jpg",
+      ],
       heroInfo: [
         {
           header: "Check out the Available quizzes for you to play",
-          btnContent: "View Quiz"
+          btnContent: "View Quiz",
         },
         {
           header: "Learn more about our Quiz, Read Now!!!",
-          btnContent: " About Section"
+          btnContent: "About Section",
         },
         {
-          header: "Configure Your Quizzes",
-          btnContent: "Go to Quiz Section"
+          header: "Know more about the developer",
+          btnContent: "Go to Contact Section",
         },
       ],
-    }
+    };
   },
-  computed : {},
-  methods : {
+  computed: {},
+  methods: {
     changeBackground(num) {
-      this.count = num
+      this.count = num;
     },
-    scrollDown(){
-      document.documentElement.style.scrollBehavior = "smooth"
-      window.scrollTo(0,730)
-      document.documentElement.style.scrollBehavior = "auto"
-    }
+    scrollDown() {
+      document.documentElement.style.scrollBehavior = "smooth";
+      window.scrollTo(0, 730);
+      document.documentElement.style.scrollBehavior = "auto";
+    },
   },
-  mounted(){
-    this.interval=setInterval(()=>{  
-      if (this.count == 2) this.count = 0 
-      else this.count++
-      this.asideImgCount == this.quizImages.length -1 ? this.asideImgCount = 0 : this.asideImgCount++
-    },10000)
+  mounted() {
+    this.interval = setInterval(() => {
+      if (this.count == 2) this.count = 0;
+      else this.count++;
+      this.asideImgCount == this.quizImages.length - 1
+        ? (this.asideImgCount = 0)
+        : this.asideImgCount++;
+    }, 10000);
   },
-  unmounted(){
-    this.interval = ''
+  unmounted() {
+    this.interval = "";
   },
-  beforeRouteEnter (to, from, next) {
-    window.scrollTo(0, 0) 
-    next()
-  }
-}
+  beforeRouteEnter(to, __, next) {
+    window.scrollTo(0, 0);
+    next();
+  },
+};
 </script>
 
 <style>
-body{
+body {
   scroll-behavior: smooth;
 }
-.quiz-card{
-  transition: all .4s;
+.quiz-card {
+  transition: all 0.4s;
 }
-.quiz-card:hover{
+.quiz-card:hover {
   transform: scale(1.05);
 }
-.quiz-card-container::-webkit-scrollbar{
+.quiz-card-container::-webkit-scrollbar {
   height: 0px;
 }
-::-webkit-scrollbar-thumb{
-  border: .25em solid inherit;
+::-webkit-scrollbar-thumb {
+  border: 0.25em solid inherit;
   background: gray;
   border-radius: 100vw;
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 1.2em;
 }
-::-webkit-scrollbar-track{
-  margin-block: .5em;
+::-webkit-scrollbar-track {
+  margin-block: 0.5em;
 }
-.btn{
-  transition: all .5s;
+.btn {
+  transition: all 0.5s;
 }
 </style>
