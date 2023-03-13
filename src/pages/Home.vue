@@ -66,7 +66,7 @@ export default {
     },
     scrollDown() {
       document.documentElement.style.scrollBehavior = "smooth";
-      window.scrollTo(0, 730);
+      window.scrollTo(0, 600);
       document.documentElement.style.scrollBehavior = "auto";
     },
   },
@@ -82,7 +82,7 @@ export default {
   unmounted() {
     this.interval = "";
   },
-  beforeRouteEnter(to, __, next) {
+  beforeRouteEnter(_, __, next) {
     window.scrollTo(0, 0);
     next();
   },

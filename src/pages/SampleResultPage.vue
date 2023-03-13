@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full" style="background: #222">
-    <div class="py-10">
+    <div class="py-16">
       <div class="text-center text-white">
         <h1 class="font-bold">
           <span v-if="score >= Math.floor(resultArr.length / 2)">Yayy</span>

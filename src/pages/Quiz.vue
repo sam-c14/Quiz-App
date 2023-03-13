@@ -69,7 +69,7 @@
       >
     </div>
     <div class="flex justify-center">
-      <TimerVue :testDone="hasQuizEnded" />
+      <TimerVue :difficulty="difficulty" :testDone="hasQuizEnded" />
     </div>
   </div>
 
@@ -127,6 +127,7 @@ export default {
       questions: "",
       category: this.$route.params.category,
       hasQuizEnded: false,
+      difficulty: "easy",
     };
   },
   mounted() {
@@ -303,7 +304,7 @@ export default {
     },
   },
 
-  beforeRouteEnter(to, from, next) {
+  beforeRouteEnter(to, _, next) {
     getQuestions(to.params.category, to.params.difficulty, (err, questions) => {
       // `setData` is a method defined below
       next((vm) => vm.setData(err, questions));
@@ -313,6 +314,7 @@ export default {
   // the logic will be slightly different.
   async beforeRouteUpdate(to, from) {
     this.questions = null;
+    this.difficulty = to.params.difficulty;
     try {
       this.questions = await getQuestions(
         to.params.category,

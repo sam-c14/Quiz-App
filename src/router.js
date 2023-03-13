@@ -5,6 +5,7 @@ import ResultPage from "./pages/ResultPage.vue";
 import AllQuizPage from "./pages/AllQuizPage.vue";
 import SampleQuizPage from "./pages/SampleQuizPage.vue";
 import SampleResultPage from "./pages/SampleResultPage.vue";
+import About from "./pages/About.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -24,13 +25,17 @@ const routes = [
 
       return {
         resultArr: resultArr === "" ? [] : resultArr.split(","),
-      };// To pass the full result array to the result page
+      }; // To pass the full result array to the result page
     },
   },
   {
     path: "/allQuiz",
     name: "allQuiz",
     component: AllQuizPage,
+  },
+  {
+    path: "/about-quiz",
+    component: About,
   },
   { path: "/sample-quiz", component: SampleQuizPage },
   { path: "/sample-result", component: SampleResultPage },

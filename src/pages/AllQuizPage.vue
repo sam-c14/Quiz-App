@@ -14,9 +14,16 @@
           </div>
           <div class="xl:w-1/5 lg:w-1/4 md:w-1/3 relative">
             <div class="inline-flex w-full">
-                <input id="search-quiz" @click="isListShowing = !isListShowing" autocomplete="off" type="text" v-model="search" name="search-quiz"
-                    class="border border-black rounded-sm w-full uppercase font-normal text-sm bg-slate-200 py-1 pl-2" />
-                <AngleArrowDown class="relative -left-4 top-1.5" />
+              <input
+                id="search-quiz"
+                @click="isListShowing = !isListShowing"
+                autocomplete="off"
+                type="text"
+                v-model="search"
+                name="search-quiz"
+                class="border border-black rounded-sm w-full uppercase font-normal text-sm bg-slate-200 py-1 pl-2"
+              />
+              <AngleArrowDown class="relative -left-4 top-1.5" />
             </div>
             <div
               v-if="isListShowing"
@@ -66,7 +73,10 @@
             <div
               class="w-full px-5 h-full pt-5 lg:text-2xl md:text-xl text-black"
             >
-              <h1 v-if="tempQuizImagesArray.length > 2" class="font-semibold sm:w-full">
+              <h1
+                v-if="tempQuizImagesArray.length > 2"
+                class="font-semibold sm:w-full"
+              >
                 {{ quizInfo[index] }}
               </h1>
               <h1 v-else class="font-semibold sm:w-full">
@@ -83,12 +93,16 @@
       </div>
     </div>
   </div>
- <div class="flex justify-center">
-    <div ref="loaderContainer" style="z-index: 90"
-        class="fixed hide-show top-0 w-full flex justify-center items-center h-screen bg-slate-50" v-if="isLoading">
-        <LoadingIcon />
+  <div class="flex justify-center">
+    <div
+      ref="loaderContainer"
+      style="z-index: 90"
+      class="fixed hide-show top-0 w-full flex justify-center items-center h-screen bg-slate-50"
+      v-if="isLoading"
+    >
+      <LoadingIcon />
     </div>
- </div>
+  </div>
 </template>
 
 <script>
@@ -97,10 +111,10 @@ import getImageUrl from "../utilities/mixins/getImageUrl";
 import getCountry from "../utilities/mixins/getCountry";
 import Btn from "../components/Btn.vue";
 import LoadingIcon from "../assets/icons/LoadingIcon.vue";
-import AngleArrowDown from "../assets/icons/AngleArrowDownIcon.vue"
-import { useUniversalStore } from "../store/universal"
+import AngleArrowDown from "../assets/icons/AngleArrowDownIcon.vue";
+import { useUniversalStore } from "../store/universal";
 export default {
-  components: { Banner, Btn, LoadingIcon,AngleArrowDown },
+  components: { Banner, Btn, LoadingIcon, AngleArrowDown },
   mixins: [getImageUrl, getCountry],
   computed: {
     getCurrentDate() {
@@ -134,8 +148,8 @@ export default {
           btnContent: " About Section",
         },
         {
-          header: "Configure Your Quizzes",
-          btnContent: "Go to Quiz Section",
+          header: "Know more about the Developer",
+          btnContent: "Go to Contact Section",
         },
       ],
       months: [
@@ -166,7 +180,17 @@ export default {
       hasBeenMounted: false,
       count: 0,
       isLoading: false,
-      options: ["all","arts", "sports", "music", "movies","general_knowledge","science", "food","geography"],
+      options: [
+        "all",
+        "arts",
+        "sports",
+        "music",
+        "movies",
+        "general_knowledge",
+        "science",
+        "food",
+        "geography",
+      ],
       search: "",
       isListShowing: false,
       quizImagesObject: [
@@ -208,31 +232,30 @@ export default {
           "scale(1)";
       });
     });
-    const store = useUniversalStore()
+    const store = useUniversalStore();
     if (store.darkModeStatus) {
-      const cardContent = document.getElementById('card-content')
-      cardContent ? cardContent.style.color = "#ccc" : ""
-      const cards = [...document.querySelectorAll('#quiz-card')]
+      const cardContent = document.getElementById("card-content");
+      cardContent ? (cardContent.style.color = "#ccc") : "";
+      const cards = [...document.querySelectorAll("#quiz-card")];
       if (cards.length > 1) {
-        cards.map(card => {
-          card.style.border = "none"
-        })
+        cards.map((card) => {
+          card.style.border = "none";
+        });
       }
-      const label = document.getElementById("label")
-      console.log(label)
-      label ? label.style.color = "#bbb" : ''
-    }
-    else {
-      const cardContent = document.getElementById('card-content')
-      cardContent ? cardContent.style.color = "#000" : ""
-      const cards = [...document.querySelectorAll('.quiz-card')]
+      const label = document.getElementById("label");
+      console.log(label);
+      label ? (label.style.color = "#bbb") : "";
+    } else {
+      const cardContent = document.getElementById("card-content");
+      cardContent ? (cardContent.style.color = "#000") : "";
+      const cards = [...document.querySelectorAll(".quiz-card")];
       if (cards.length > 1) {
-        cards.map(card => {
-          card.style.border = "none"
-        })
+        cards.map((card) => {
+          card.style.border = "none";
+        });
       }
-      const label = document.getElementById("label")
-      label ? label.style.color = "#000" : ''
+      const label = document.getElementById("label");
+      label ? (label.style.color = "#000") : "";
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -246,12 +269,12 @@ export default {
     loadAnimationEnd() {
       if (this.isLoading) {
         setTimeout(() => {
-            this.$refs.loaderContainer.style.width="50%"
-            this.$refs.loaderContainer.style.borderRadius = "999px";
-            this.$refs.loaderContainer.style.transform = "scale(0.2)";
-            setTimeout(() => {
-                this.isLoading = false;
-            }, 800);
+          this.$refs.loaderContainer.style.width = "50%";
+          this.$refs.loaderContainer.style.borderRadius = "999px";
+          this.$refs.loaderContainer.style.transform = "scale(0.2)";
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 800);
         }, 1000);
       }
     },
@@ -259,23 +282,22 @@ export default {
       this.search = e.target.dataset.id;
       this.isListShowing = false;
       let temp = [];
-      if(this.search !== 'all'){
-          temp = this.quizImagesObject.filter((obj,index) => {
-              if (this.quizImages.includes(obj[this.search])) {
-                  this.ind = index
-                  return obj[this.search];
-              }
+      if (this.search !== "all") {
+        temp = this.quizImagesObject.filter((obj, index) => {
+          if (this.quizImages.includes(obj[this.search])) {
+            this.ind = index;
+            return obj[this.search];
+          }
+        });
+        setTimeout(() => {
+          temp.map((obj) => {
+            this.tempQuizImagesArray = [...Object.values(obj)];
           });
-          setTimeout(()=>{
-              temp.map((obj) => {
-                  this.tempQuizImagesArray = [...Object.values(obj)];
-              });
-          },300)
-      }
-      else{
-          setTimeout(() => {
-              this.tempQuizImagesArray = [...this.quizImages]
-          }, 300)
+        }, 300);
+      } else {
+        setTimeout(() => {
+          this.tempQuizImagesArray = [...this.quizImages];
+        }, 300);
       }
     },
   },

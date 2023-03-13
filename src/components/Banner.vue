@@ -22,14 +22,16 @@
               </template>
 
               <template #btn-slot>
-                <button
-                  class="p-3 py-2 w-10/12 sm:w-auto text-xs sm:text-sm hover:bg-blue-500 btn hover:text-white font-normal tracking-wider rounded-full text-blue-600 bg-white my-1"
-                >
-                  {{ heroInfo[index].btnContent
-                  }}<span class="ml-1">
-                    <Btn :icon="'right-long'"></Btn>
-                  </span>
-                </button>
+                <router-link to="/about-quiz">
+                  <button
+                    class="p-3 py-2 w-10/12 sm:w-auto text-xs sm:text-sm hover:bg-blue-500 btn hover:text-white font-normal tracking-wider rounded-full text-blue-600 bg-white my-1"
+                  >
+                    {{ heroInfo[index].btnContent
+                    }}<span class="ml-1">
+                      <Btn :icon="'right-long'"></Btn>
+                    </span>
+                  </button>
+                </router-link>
               </template>
             </HeroContent>
           </div>
@@ -76,7 +78,6 @@ export default {
     url("../assets/images/pexels-ivan-samkov-4240497.jpg") no-repeat;
   background-position: center;
   background-size: cover;
-  /* background-attachment: fixed; */
 }
 
 .image-2 {
@@ -84,7 +85,6 @@ export default {
     url("../assets/images/pexels-jakub-novacek-924824.jpg") no-repeat;
   background-position: center;
   background-size: cover;
-  /* background-attachment: fixed; */
 }
 
 .image-3 {
@@ -92,7 +92,6 @@ export default {
     url("../assets/images/pexels-lil-artsy-1394646.jpg") no-repeat;
   background-position: center;
   background-size: cover;
-  /* background-attachment: fixed; */
 }
 
 .fade-enter-active,

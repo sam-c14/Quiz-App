@@ -9,6 +9,7 @@
 export default {
   props: {
     testDone: Boolean,
+    difficulty: String,
   },
   data() {
     return {
@@ -20,14 +21,16 @@ export default {
   },
   methods: {
     startTimer() {
+      if (this.difficulty === "easy") this.minutes = 20;
       this.timerInterval = setInterval(() => {
         this.seconds--;
         if (this.seconds % 10 === this.seconds) {
           this.secondStr = "0" + this.seconds;
         } else this.secondStr = this.seconds;
-        if (this.seconds === 0) {
+        if (this.seconds === 0 && this.minutes === 0)
+          clearInterval(this.timerInterval);
+        else if (this.seconds === 0) {
           this.seconds = 59;
-          // this.secondStr = "0" + this.seconds
           this.minutes--;
         }
       }, 100);
@@ -37,7 +40,7 @@ export default {
     if (this.testDone == true || (this.minutes === 0 && this.seconds === 0)) {
       clearInterval(this.timerInterval);
     }
-    if (this.minutes === 0 && this.seconds === 0) {
+    if (this.seconds === 0 && this.minutes === 0) {
       clearInterval(this.timerInterval);
     }
   },

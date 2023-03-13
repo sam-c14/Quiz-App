@@ -2,7 +2,7 @@
   <div style="background-color: #007faa" class="relative">
     <header class="">
       <h1
-        class="font-bold text-white text-center sm:text-xl text-base py-10 capitalize"
+        class="font-bold text-white text-center sm:text-xl text-base py-14 capitalize"
         >Sample Quiz</h1
       >
     </header>
