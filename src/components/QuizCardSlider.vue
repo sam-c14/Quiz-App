@@ -262,7 +262,6 @@ export default {
         });
       }
       const label = document.getElementById("label");
-      console.log(label);
       label ? (label.style.color = "#bbb") : "";
     } else {
       const cardContent = document.getElementById("card-content");

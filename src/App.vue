@@ -20,7 +20,6 @@ export default {
       this.toggleDarkMode(!store.darkModeStatus);
     }
   },
-  beforeMount() {},
   mounted() {
     const auth = getAuth();
     const store = useAuthStore();
@@ -46,9 +45,9 @@ export default {
       store.setDarkModeStatus(!prev);
       if (store.darkModeStatus) {
         document.documentElement.style.transition = "background .2s";
-        document.documentElement.style.backgroundColor = "#333";
+        document.documentElement.style.backgroundColor = "#222";
         const cardContent = document.getElementById("card-content");
-        cardContent ? (cardContent.style.color = "#aaa") : "";
+        cardContent ? (cardContent.style.color = "#fff") : "";
         const cards = [...document.querySelectorAll("#quiz-card")];
         if (cards.length > 1) {
           cards.map((card) => {
@@ -56,7 +55,6 @@ export default {
           });
         }
         const label = document.getElementById("label");
-        console.log(label);
         label ? (label.style.color = "#bbb") : "";
       } else {
         document.documentElement.style.backgroundColor = "#eee";
@@ -76,5 +74,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
