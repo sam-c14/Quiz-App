@@ -47,14 +47,17 @@ export default {
         {
           header: "Check out the Available quizzes for you to play",
           btnContent: "View Quiz",
+          route: "/allQuiz",
         },
         {
           header: "Learn more about our Quiz, Read Now!!!",
           btnContent: "About Section",
+          route: "/about-quiz",
         },
         {
           header: "Know more about the developer",
           btnContent: "Go to Contact Section",
+          route: "/contact",
         },
       ],
     };

@@ -68,100 +68,12 @@
 export default {
   data() {
     return {
-      score: 9,
-      resultArr: [
-        {
-          id: "1",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "2",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "3",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "4",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "5",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "6",
-          question: "What is the capital of Germany?",
-          selectedOption: "I don't know",
-          answer: "France",
-        },
-        {
-          id: "7",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "8",
-          question: "What is the capital of Germany?",
-          selectedOption: "Chile",
-          answer: "France",
-        },
-        {
-          id: "9",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "10",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "11",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-        {
-          id: "12",
-          question: "What is the capital of Germany?",
-          selectedOption: "Madagascar",
-          answer: "France",
-        },
-        {
-          id: "13",
-          question: "What is the capital of Germany?",
-          selectedOption: "Ghana",
-          answer: "France",
-        },
-        {
-          id: "14",
-          question: "What is the capital of Germany?",
-          selectedOption: "Turkey",
-          answer: "France",
-        },
-        {
-          id: "15",
-          question: "What is the capital of Germany?",
-          selectedOption: "Spain",
-          answer: "France",
-        },
-      ],
+      score: JSON.parse(this.$route.params.score),
+      resultArr: JSON.parse(this.$route.params.resultArr),
     };
+  },
+  mounted() {
+    console.log(this.resultArr);
   },
 };
 </script>
@@ -171,4 +83,3 @@ export default {
   background: rgba(22, 3, 4, 0.623);
 }
 </style>
-

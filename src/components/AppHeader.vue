@@ -62,7 +62,7 @@
         class="flex items-center justify-center w-full sm:w-1/6 sm:py-0 py-2"
       >
         <input
-          class="sliding-check w-1/5 md:w-3/5 xl:w-14 lg:w-1/2 my-0 h-6"
+          class="sliding-check w-14 md:w-1/2 xl:w-14 lg:w-2/5 my-0 md:h-5 h-6 lg:h-6"
           type="checkbox"
           :checked="isDarkModeOn"
           id="dark-mode-btn"
@@ -204,9 +204,10 @@ export default {
   width: 45%;
   height: 100%;
   border-radius: 9999px;
-  top: -1px;
+  top: 0px;
   left: 0;
-  transform: scale(0.7, 0.7);
+  transform: scale(1.1);
+  border: 1px solid #3333337c;
   background: white;
   transition: all 0.5s;
 }

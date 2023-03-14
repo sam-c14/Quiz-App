@@ -22,7 +22,7 @@
               </template>
 
               <template #btn-slot>
-                <router-link to="/about-quiz">
+                <router-link :to="heroInfo[index].route">
                   <button
                     class="p-3 py-2 w-10/12 sm:w-auto text-xs sm:text-sm hover:bg-blue-500 btn hover:text-white font-normal tracking-wider rounded-full text-blue-600 bg-white my-1"
                   >

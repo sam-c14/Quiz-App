@@ -128,13 +128,15 @@
     </Teleport>
     <div class="my-4 pr-2 w-10/12 flex justify-end">
       <div class="">
-        <Btn
-          @click="showAllQuiz"
-          class="all-quiz-btn"
-          :direction="'right-long'"
-          :icon="'btn'"
-          >View All Quizzes</Btn
-        >
+        <router-link to="viewAllQuiz">
+          <Btn
+            @click="showAllQuiz"
+            class="all-quiz-btn"
+            :direction="'right-long'"
+            :icon="'btn'"
+            >View All Quizzes</Btn
+          >
+        </router-link>
       </div>
     </div>
   </section>
@@ -150,7 +152,7 @@ import { useAuthStore } from "../store/auth";
 import LoadingIcon from "../assets/icons/LoadingIcon.vue";
 export default {
   components: { Btn, QuizModal, LoadingIcon },
-  mixins: [getImageUrl, changeRoute, getCountry],
+  mixins: [getImageUrl, getCountry],
   props: {
     quizImages: Array,
   },
@@ -245,9 +247,6 @@ export default {
       e.preventDefault();
       let quizCardContainer = this.$refs.quizCardContainer;
       quizCardContainer.scrollTop += e.deltaY;
-    },
-    showAllQuiz() {
-      this.changeRoute("allQuiz", {});
     },
   },
   mounted() {

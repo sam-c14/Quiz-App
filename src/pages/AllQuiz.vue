@@ -142,14 +142,17 @@ export default {
         {
           header: "Check out the Available quizzes for you to play",
           btnContent: "View Quiz",
+          route: "/viewAllQuiz",
         },
         {
           header: "Learn more about our Quiz, Read Now!!!",
           btnContent: " About Section",
+          route: "/about-quiz",
         },
         {
           header: "Know more about the Developer",
           btnContent: "Go to Contact Section",
+          route: "/contact",
         },
       ],
       months: [
@@ -243,7 +246,6 @@ export default {
         });
       }
       const label = document.getElementById("label");
-      console.log(label);
       label ? (label.style.color = "#bbb") : "";
     } else {
       const cardContent = document.getElementById("card-content");
