@@ -35,12 +35,12 @@ export default {
       count: 0,
       asideImgCount: 0,
       quizImages: [
-        "Art_Quiz_5.jpg",
-        "Golf_Quiz.jpg",
-        "History_Quiz_2.jpg",
+        "Art_Quiz_6.jpg",
+        "sport_quiz.jpg",
+        "Music.quiz.png",
         "History_Quiz.jpg",
-        "Movie_Quiz_4.jpg",
-        "OIP.jpg",
+        "Movie_Quiz_5.jpg",
+        "OIP_2.jpg",
         "Science_Quiz_2.jpg",
       ],
       heroInfo: [
@@ -50,7 +50,7 @@ export default {
           route: "/allQuiz",
         },
         {
-          header: "Learn more about our Quiz, Read Now!!!",
+          header: "Learn more about Us",
           btnContent: "About Section",
           route: "/about-quiz",
         },

@@ -3,8 +3,11 @@
     <div class="w-full banner-contact-img flex flex-wrap h-full"> </div>
   </div>
   <div class="flex justify-center mt-5">
-    <form class="w-9/ justify-center gap-2 flex-wrap flex" @submit="submitForm">
-      <div class="w-3/5 flex flex-wrap justify-center">
+    <form
+      class="w-9/ justify-center py-2 gap-2 flex-wrap flex"
+      @submit="submitForm"
+    >
+      <div class="w-4/5 sm:w-3/5 flex flex-wrap justify-center">
         <label for="email">Email:</label>
         <input
           id="email"
@@ -14,7 +17,7 @@
           autocomplete="off"
         />
       </div>
-      <div class="w-3/5 flex flex-wrap justify-center">
+      <div class="w-4/5 sm:w-3/5 flex flex-wrap justify-center">
         <label for="message">Message:</label>
         <textarea
           name=""
@@ -38,6 +41,6 @@ export default {};
 </script>
 <style>
 .banner-contact-img {
-  background: url("../assets/images/contact-us.jpg") no-repeat center/cover;
+  background: url("../assets/images/contact-us-2.jpg") no-repeat center/cover;
 }
 </style>

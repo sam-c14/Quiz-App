@@ -34,8 +34,16 @@
               class="text-white text-xs hover:text-blue-500 quiz-card capitalize"
               v-for="link in footerDetails"
               :key="link"
-              ><a target="_blank" :href="link.link">{{ link.content }}</a></li
-            >
+              ><a
+                v-if="link.link !== '/contact'"
+                target="_blank"
+                :href="link.link"
+                >{{ link.content }}</a
+              >
+              <router-link v-else :to="link.link">{{
+                link.content
+              }}</router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -65,7 +73,7 @@ export default {
           link: "https://www.pexels.com",
         },
         { content: "Tailwind icons", link: "https://heroicons.com/" },
-        { content: "Contact Us", link: "'mailto:'samuelaffah14@gmail.com" },
+        { content: "Contact Us", link: "/contact" },
       ],
     };
   },
