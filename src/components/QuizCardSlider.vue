@@ -244,9 +244,7 @@ export default {
       }
     },
     preventHorizontalScroll(e) {
-      e.preventDefault();
-      let quizCardContainer = this.$refs.quizCardContainer;
-      quizCardContainer.scrollTop += e.deltaY;
+      // console.log(e);
     },
   },
   mounted() {

@@ -45,6 +45,7 @@
         <div
           v-for="(item, index) in tempQuizImagesArray.length"
           :key="item"
+          @click="selectQuiz(index)"
           :class="index % 2 == 0 ? 'md:flex-row' : 'md:flex-row-reverse'"
           class="md:h-64 border w-4/5 md:w-11/12 xl:w-2/3 flex-col mb-0 hover:shadow-2xl overflow-hidden bg-black flex-nowrap flex quiz-card-2"
           ref="quizCard"
@@ -82,6 +83,75 @@
               <h1 v-else class="font-semibold sm:w-full">
                 {{ quizInfo[ind] }}
               </h1>
+              <Teleport to="body">
+                <QuizModal v-if="quizSelected">
+                  <template #header>
+                    <button
+                      @click="this.quizSelected = false"
+                      class="w-full my-2 hover:bg-blue-900 transition-all bg-blue-800 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer"
+                      >Go Back</button
+                    >
+                    <h1 class="my-2"
+                      >You've selected the
+                      <span class="capitalize font-semibold">{{
+                        category
+                      }}</span>
+                      Quiz</h1
+                    >
+                    <h1 class="my-2 font-semibold"
+                      >Select Your Difficulty Level Below:</h1
+                    >
+                  </template>
+
+                  <template #main>
+                    <div>
+                      <div class="flex gap-2 items-center">
+                        <input
+                          v-model="difficulty"
+                          type="radio"
+                          class="h-3 w-3"
+                          name="difficulty-level"
+                          value="easy"
+                          id=""
+                        />
+                        <label class="font-bold">Easy</label>
+                      </div>
+                      <div class="flex gap-2 items-center">
+                        <input
+                          v-model="difficulty"
+                          type="radio"
+                          class="h-3 w-3"
+                          name="difficulty-level"
+                          value="medium"
+                          id=""
+                        />
+                        <label class="font-bold">Medium</label>
+                      </div>
+                      <div class="flex gap-2 items-center">
+                        <input
+                          v-model="difficulty"
+                          type="radio"
+                          class="h-3 w-3"
+                          name="difficulty-level"
+                          value="hard"
+                          id=""
+                        />
+                        <label class="font-bold">Hard</label>
+                      </div>
+                    </div>
+                  </template>
+
+                  <template #footer>
+                    <button
+                      v-if="!isLoading"
+                      @click="startQuiz"
+                      class="w-full my-2 hover:bg-blue-800 transition-all bg-blue-900 px-3 text-gray-200 rounded-md py-2 font-semibold text-xs uppercase tracking-wider cursor-pointer"
+                      >Go to Quiz</button
+                    >
+                    <LoadingIcon v-else />
+                  </template>
+                </QuizModal>
+              </Teleport>
               <div
                 class="text-blue-700 mt-2 mb-3 h-1/2 flex justify-end items-start"
               >
@@ -108,14 +178,17 @@
 <script>
 import Banner from "../components/Banner.vue";
 import getImageUrl from "../utilities/mixins/getImageUrl";
+import QuizModal from "../components/Modal.vue";
 import getCountry from "../utilities/mixins/getCountry";
 import Btn from "../components/Btn.vue";
 import LoadingIcon from "../assets/icons/LoadingIcon.vue";
 import AngleArrowDown from "../assets/icons/AngleArrowDownIcon.vue";
 import { useUniversalStore } from "../store/universal";
+import { useAuthStore } from "../store/auth";
+import changeRoute from "../utilities/mixins/changeRoute";
 export default {
-  components: { Banner, Btn, LoadingIcon, AngleArrowDown },
-  mixins: [getImageUrl, getCountry],
+  components: { Banner, Btn, LoadingIcon, AngleArrowDown, QuizModal },
+  mixins: [getImageUrl, getCountry, changeRoute],
   computed: {
     getCurrentDate() {
       var today = new Date();
@@ -128,15 +201,13 @@ export default {
   data() {
     return {
       quizImages: [
-        "Art_Quiz_5.jpg",
-        "Golf_Quiz.jpg",
-        "History_Quiz_2.jpg",
+        "Art_Quiz_6.jpg",
+        "sport_quiz.jpg",
+        "Music.quiz.png",
         "History_Quiz.jpg",
-        "Movie_Quiz_4.jpg",
-        "OIP.jpg",
+        "Movie_Quiz_5.jpg",
+        "OIP_2.jpg",
         "Science_Quiz_2.jpg",
-        "Food_Quiz_3.jpg",
-        "Geography_Quiz.jpg",
       ],
       heroInfo: [
         {
@@ -183,6 +254,9 @@ export default {
       hasBeenMounted: false,
       count: 0,
       isLoading: false,
+      difficulty: "",
+      quizSelected: false,
+      category: "",
       options: [
         "all",
         "arts",
@@ -206,6 +280,15 @@ export default {
         { science: "Science_Quiz_2.jpg" },
         { food: "Food_Quiz_3.jpg" },
         { geography: "Geography_Quiz.jpg" },
+      ],
+      categories: [
+        "arts",
+        "sports",
+        "music",
+        "history",
+        "movies",
+        "general_knowledge",
+        "science",
       ],
       tempQuizImagesArray: [],
       ind: 0, // Index to get each quiz Info when search is performed
@@ -267,6 +350,25 @@ export default {
   methods: {
     changeBackground(num) {
       this.count = num;
+    },
+    selectQuiz(index) {
+      this.quizSelected = true;
+      this.category = this.categories[index];
+    },
+    startQuiz() {
+      let store = useAuthStore();
+      if (!store.isLoggedIn) {
+        this.changeRoute("login", {
+          category: this.category,
+          difficulty: this.difficulty,
+        });
+      } else {
+        this.changeRoute("quiz", {
+          category: this.category,
+          difficulty: this.difficulty,
+        });
+        this.isLoading = true;
+      }
     },
     loadAnimationEnd() {
       if (this.isLoading) {
