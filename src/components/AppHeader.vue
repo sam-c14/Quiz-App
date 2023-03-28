@@ -135,7 +135,9 @@ export default {
         }
       } else {
         // To prevent opening of menu without user click on resize
-        details.top < -100 ? this.showMenu() : this.hideMenu();
+        details.top && this.isMenuShowing < -100
+          ? this.showMenu()
+          : this.hideMenu();
       }
     });
     const store = useNavbarStore();
@@ -143,7 +145,8 @@ export default {
     }
     window.addEventListener("scroll", (e) => {
       const windowView = document.documentElement.getBoundingClientRect();
-      if (windowView.top < -100 && windowView.width > 640) {
+      if (windowView.width < 640) return;
+      else if (windowView.top < -100 && windowView.width > 640) {
         if (this.$refs.AppHeader && this.$refs.quizIcon) {
           this.$refs.AppHeader.style.color = "black";
           this.$refs.AppHeader.style.background = "white";
