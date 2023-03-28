@@ -47,6 +47,9 @@ export default {
   mounted() {
     this.startTimer();
   },
+  beforeUnmount() {
+    clearInterval(this.timerInterval);
+  },
 };
 </script>
 <style></style>

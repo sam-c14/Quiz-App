@@ -128,7 +128,7 @@
     </Teleport>
     <div class="my-4 pr-2 w-10/12 flex justify-end">
       <div class="">
-        <router-link to="viewAllQuiz">
+        <router-link to="allQuiz">
           <Btn
             @click="showAllQuiz"
             class="all-quiz-btn"
@@ -145,14 +145,14 @@
 import Btn from "../components/Btn.vue";
 import getImageUrl from "../utilities/mixins/getImageUrl";
 import QuizModal from "../components/Modal.vue";
-import changeRoute from "../utilities/mixins/changeRoute";
 import getCountry from "../utilities/mixins/getCountry";
 import { useUniversalStore } from "../store/universal";
 import { useAuthStore } from "../store/auth";
+import changeRoute from "../utilities/mixins/changeRoute";
 import LoadingIcon from "../assets/icons/LoadingIcon.vue";
 export default {
   components: { Btn, QuizModal, LoadingIcon },
-  mixins: [getImageUrl, getCountry],
+  mixins: [getImageUrl, getCountry, changeRoute],
   props: {
     quizImages: Array,
   },

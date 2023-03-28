@@ -35,7 +35,6 @@ export default {
         // ...
         store.setLoginStatus(false);
       }
-      const label = document.getElementById("label");
     });
   },
   methods: {
@@ -49,21 +48,46 @@ export default {
         const cardContent = document.getElementById("card-content");
         cardContent ? (cardContent.style.color = "#fff") : "";
         const cards = [...document.querySelectorAll("#quiz-card")];
+
         if (cards.length > 1) {
           cards.map((card) => {
             card.style.border = "1px solid #aaa";
           });
         }
+        const labels = [...document.getElementsByTagName("label")];
+        if (labels.length > 1) {
+          labels.map((label) => {
+            label.style.color = " #bbb";
+          });
+        }
+        const aboutTags = [...document.getElementsByClassName("p-about")];
+        if (aboutTags.length > 1) {
+          aboutTags.map((tag) => {
+            tag.style.color = " #bbb";
+          });
+        }
         const label = document.getElementById("label");
         label ? (label.style.color = "#bbb") : "";
       } else {
-        document.documentElement.style.backgroundColor = "#eee";
+        document.documentElement.style.backgroundColor = "#fff";
         const cardContent = document.getElementById("card-content");
         cardContent ? (cardContent.style.color = "#000") : "";
         const cards = [...document.querySelectorAll(".quiz-card")];
         if (cards.length > 1) {
           cards.map((card) => {
             card.style.border = "none";
+          });
+        }
+        const labels = [...document.getElementsByTagName("label")];
+        if (labels.length > 1) {
+          labels.map((label) => {
+            label.style.color = " #000";
+          });
+        }
+        const aboutTags = [...document.getElementsByClassName("p-about")];
+        if (aboutTags.length > 1) {
+          aboutTags.map((tag) => {
+            tag.style.color = " #000";
           });
         }
         const label = document.getElementById("label");

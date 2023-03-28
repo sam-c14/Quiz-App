@@ -18,7 +18,9 @@
       <div
         class="sm:my-0 mt-2 mb-7 links border-b-none hover:border-b-2 rounded-b-sm sm:px-1 border-white py-3"
       >
-        <div class="flex justify-center sm:justify-between gap-x-1">
+        <div
+          class="flex justify-center sm:justify-between cursor-pointer gap-x-1"
+        >
           <router-link
             to="/"
             class="sm:text-sm mt-0.5 lg:text-lg md:text-base font-bold"
@@ -62,7 +64,7 @@
         class="flex items-center justify-center w-full sm:w-1/6 sm:py-0 py-2"
       >
         <input
-          class="sliding-check w-14 md:w-1/2 xl:w-14 lg:w-2/5 my-0 md:h-5 h-6 lg:h-6"
+          class="sliding-check w-14 md:w-1/2 xl:w-14 lg:w-2/5 cursor-pointer my-0 md:h-5 h-6 lg:h-6"
           type="checkbox"
           :checked="isDarkModeOn"
           id="dark-mode-btn"
@@ -131,6 +133,9 @@ export default {
           appHeader.style.height = "auto";
           this.$refs.menu.style.width = "100%";
         }
+      } else {
+        // To prevent opening of menu without user click on resize
+        details.top < -100 ? this.showMenu() : this.hideMenu();
       }
     });
     const store = useNavbarStore();

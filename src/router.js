@@ -6,6 +6,7 @@ import SampleQuizPage from "./pages/SampleQuizPage.vue";
 import SampleResultPage from "./pages/SampleResultPage.vue";
 import About from "./pages/About.vue";
 import AllQuiz from "./pages/AllQuiz.vue";
+import Contact from "./pages/Contact.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -31,6 +32,10 @@ const routes = [
   {
     path: "/about-quiz",
     component: About,
+  },
+  {
+    path: "/contact",
+    component: Contact,
   },
   {
     path: "/allQuiz",
