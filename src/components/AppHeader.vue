@@ -13,7 +13,7 @@
     </div>
     <div
       ref="menu"
-      class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap sm:pl-2 sm:w-11/12 sm:justify-between"
+      class="sm:flex transition-all overflow-hidden w-0 text-center gap-y-10 sm:flex-nowrap justify-center flex-wrap sm:pl-2 sm:w-11/12 sm:justify-between z-30"
     >
       <div
         class="sm:my-0 mt-2 mb-7 links border-b-none hover:border-b-2 rounded-b-sm sm:px-1 border-white py-3"
