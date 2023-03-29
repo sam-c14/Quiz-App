@@ -96,13 +96,13 @@ export default {
   },
   methods: {
     changeBackground(img) {
-      this.$refs.asideImgBackGround.style.opacity = "0.7";
+      this.$refs.asideImgBackGround.style.opacity = "1";
       this.$refs.asideImgBackGround.style.background = `url(${this.getImageUrl(
         img
       )}) no-repeat center/cover`;
-      setTimeout(() => {
-        this.$refs.asideImgBackGround.style.opacity = "1";
-      }, 0);
+      // setTimeout(() => {
+      //   this.$refs.asideImgBackGround.style.opacity = "1";
+      // }, 0);
     },
     showText(e) {
       if (!e) e = { currentTarget: this.$refs.circle[0] };

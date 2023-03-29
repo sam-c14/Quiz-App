@@ -37,7 +37,18 @@
   </div>
 </template>
 <script>
-export default {};
+import { useUniversalStore } from "../store/universal";
+export default {
+  mounted() {
+    const store = useUniversalStore();
+    if (store.darkModeStatus) {
+      const labels = document.getElementsByTagName("label");
+      labels.map((label) => {
+        label.style.color = "#bbb";
+      });
+    }
+  },
+};
 </script>
 <style>
 .banner-contact-img {

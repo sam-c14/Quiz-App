@@ -17,7 +17,7 @@
           </ul>
         </div>
       </div>
-      <div class="justify-center items-center flex py-10">
+      <div class="justify-center items-center content flex py-10">
         <HeroContent v-for="(item, index) in content" :key="index">
           <template #header>
             <div>
@@ -84,6 +84,14 @@ export default {
   },
   mounted() {
     this.content.push(this.devInfo);
+    const store = useUniversalStore();
+    if (store.darkModeStatus) {
+      const aboutTags = [...document.getElementsByClassName("p-about")];
+      console.log(aboutTags);
+      aboutTags.map((tag) => {
+        tag.style.color = "#bbb";
+      });
+    }
   },
 };
 </script>
