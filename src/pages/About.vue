@@ -97,7 +97,7 @@ export default {
 </script>
 <style>
 .banner-about-img {
-  background: url("../assets/images/about.jpg") no-repeat center/cover;
+  background: url("../assets/images/about.svg") no-repeat center/cover;
 }
 .active {
   --tw-bg-opacity: 1;
@@ -121,7 +121,7 @@ export default {
 @media (max-width: 640px) {
   .banner-about-img {
     background: linear-gradient(#eeeeee3a, #aaaaaa41),
-      url("../assets/images/about.jpg") no-repeat center/cover !important;
+      url("../assets/images/about.svg") no-repeat center/cover !important;
   }
 }
 </style>
