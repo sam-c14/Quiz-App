@@ -59,7 +59,7 @@ export default {
         "Vue_Js_Logo.jpg",
       ],
       backgroundImgs: [
-        "Api_Background-compressed.jpg",
+        "Api_Background-compressed.svg",
         "Firebase_Background_2-compressed.jpg",
         "Tailwind_Background-compressed.jpg",
         "Vue_Background-compressed.jpg",

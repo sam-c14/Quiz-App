@@ -33,6 +33,7 @@
         </HeroContent>
       </div>
     </div>
+    <div><img src="." alt="" /></div>
   </div>
 </template>
 <script>
@@ -97,7 +98,7 @@ export default {
 </script>
 <style>
 .banner-about-img {
-  background: url("../assets/images/about-us.jpg") no-repeat center/cover;
+  background: url("../assets/images/about.svg") no-repeat center/cover;
 }
 .active {
   --tw-bg-opacity: 1;
@@ -116,12 +117,12 @@ export default {
   transition: all 0.5s;
 }
 .inactive:hover {
-  color: rgb(59 130 246);
+  color: rgb(60 130 246);
 }
 @media (max-width: 640px) {
   .banner-about-img {
     background: linear-gradient(#eeeeee3a, #aaaaaa41),
-      url("../assets/images/about-us.jpg") no-repeat center/cover !important;
+      url("../assets/images/about.svg") no-repeat center/cover !important;
   }
 }
 </style>
