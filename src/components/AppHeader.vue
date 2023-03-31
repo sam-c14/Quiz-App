@@ -60,10 +60,10 @@
         >
       </div>
       <div
-        @click="$emit('toggle-dark-mode')"
         class="flex items-center justify-center w-full sm:w-1/6 sm:py-0 py-2"
       >
         <input
+          @click="$emit('toggle-dark-mode')"
           class="sliding-check w-14 md:w-1/2 xl:w-14 lg:w-2/5 cursor-pointer my-0 md:h-5 h-6 lg:h-6"
           type="checkbox"
           :checked="isDarkModeOn"

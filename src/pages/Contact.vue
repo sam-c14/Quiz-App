@@ -52,6 +52,6 @@ export default {
 </script>
 <style>
 .banner-contact-img {
-  background: url("../assets/images/contact-us-2.svg") no-repeat center/cover;
+  background: url("../assets/images/contact-us-2.jpg") no-repeat center/cover;
 }
 </style>
