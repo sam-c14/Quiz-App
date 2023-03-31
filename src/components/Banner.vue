@@ -75,21 +75,21 @@ export default {
 <style>
 .image-1 {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("../assets/images/pexels-ivan-samkov-4240497.jpg") no-repeat;
+    url("../assets/images/pexels-ivan-samkov-4240497-compressed.jpg") no-repeat;
   background-position: center;
   background-size: cover;
 }
 
 .image-2 {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("../assets/images/pexels-jakub-novacek-924824.jpg") no-repeat;
+    url("../assets/images/pexels-jakub-novacek-924824-compressed.jpg") no-repeat;
   background-position: center;
   background-size: cover;
 }
 
 .image-3 {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("../assets/images/pexels-lil-artsy-1394646.jpg") no-repeat;
+    url("../assets/images/pexels-lil-artsy-1394646-compressed.jpg") no-repeat;
   background-position: center;
   background-size: cover;
 }
