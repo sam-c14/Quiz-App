@@ -26,14 +26,14 @@
     </div>
     <div
       @wheel="preventHorizontalScroll"
-      class="grid mt-5 grid-flow-col pl-5 lg:pl-36 scroll-smooth z-0 gap-x-3 relative quiz-card-container overflow-x-auto py-4"
+      class="grid mt-5 grid-flow-col pl-5 lg:pl-36 scroll-smooth gap-x-3 relative quiz-card-container overflow-x-auto py-4"
       ref="quizCardContainer"
     >
       <div
         @click="selectQuiz(index)"
         v-for="(item, index) in quizImages.length"
         :key="item"
-        class="lg:h-96 lg:w-72 md:h-60 md:w-44 h-64 w-48 overflow-hidden bg-black shadow-md flex-wrap flex quiz-card"
+        class="lg:h-96 lg:w-72 md:h-60 md:w-44 h-64 w-48 overflow-hidden shadow-md flex-wrap flex quiz-card bg-slate-200"
         id="quiz-card"
       >
         <div class="w-full h-3/4">

@@ -20,7 +20,7 @@
               >
                 <a target="_blank" :href="footerLinks[index]"
                   ><img
-                    class="w-full h-full"
+                    class="w-full h-full rounded-full"
                     :src="getImageUrl(footerImgLinks[index])"
                     alt=""
                 /></a>

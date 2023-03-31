@@ -20,7 +20,7 @@
       >
       <form @submit.prevent class="w-full">
         <span class="inline-flex w-full">
-          <label for="" class="z-50 absolute ml-2 text-xs text-gray-400"
+          <label for="" class="z-40 absolute ml-2 text-xs text-gray-400"
             >Email</label
           >
           <input
@@ -31,7 +31,7 @@
           />
         </span>
         <span class="inline-flex w-full">
-          <label for="" class="z-50 absolute ml-2 text-xs text-gray-400"
+          <label for="" class="z-40 absolute ml-2 text-xs text-gray-400"
             >Password</label
           >
           <input
