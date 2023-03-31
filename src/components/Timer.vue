@@ -1,6 +1,8 @@
 <template>
-  <div class="w-1/6 flex justify-center">
-    <div class="text-white border py-3 bg-gray-600 w-3/5 text-xl text-center">
+  <div class="w-1/3 sm:w-1/6 flex justify-center">
+    <div
+      class="text-white border py-3 bg-gray-600 w-full sm:w-3/5 text-xl text-center"
+    >
       {{ minutes }} : {{ secondStr }}
     </div>
   </div>
