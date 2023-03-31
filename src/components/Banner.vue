@@ -75,7 +75,7 @@ export default {
 <style>
 .image-1 {
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)),
-    url("../assets/images/pexels-ivan-samkov-4240497-compressed.jpg") no-repeat;
+    url("../assets/images/pexels-ivan-samkov-4240497-compressed.svg") no-repeat;
   background-position: center;
   background-size: cover;
 }
